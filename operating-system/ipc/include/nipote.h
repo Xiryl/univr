@@ -1,0 +1,10 @@
+void send_timeelapsed(time_t time);
+char *load_string(char* p_s1, int my_string);
+time_t get_timestamp();
+char* load_encoded(char *txt);
+unsigned find_key(char* plain_text, char* encoded_text);
+int save_key(unsigned key, void* p_s2);
+void lock(int id, int semid, struct sembuf *sops);
+void read_line(char* shmin, char* buffer);
+void unlock(int id, int semid, struct sembuf *sops);
+void* nipote(void* params);

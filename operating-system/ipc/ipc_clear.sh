@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# S1 000001
+# S2 000002
+# QUEUE 888888
+# SEMAPHORE 555555
+
+ipcrm -Q 888888
+ipcrm -M 000001
+ipcrm -M 000002
+ipcrm -S 555555
