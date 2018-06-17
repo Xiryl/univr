@@ -27,37 +27,47 @@ $(PROJECT) : $(OBJ_FILES)
 	@echo "Linko $(PROJECT)..."
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $(D_BUILD)$(PROJECT) $(THREAD)
 
+# Creo la cartella 'build/' se non esiste
 MAKE_DIR_BUILD : 
 	mkdir -p $(D_BUILD)
 
+# Creo la cartella 'bin/' se non esiste
 MAKE_DIR_BIN : 
 	mkdir -p $(D_BIN)
 
+# compilo il progetto
 all : $(PRIOJECT)
 
+# Svuoto 'build/*.o' ed elimino l'eseguibile al suo interno
 clean : 
 	@echo "Pulisco.."
 	rm  $(OBJ_FILES) $(D_BUILD)$(PROJECT)
 
+# Doxygen
 doc :
 	@echo "Genero la documentazione doxygen..."
 	doxygen doxygen.cfg
 
+# Helper
 help : 
-	@echo "all: compila il codice sorgente"
+	@echo "Comandi make disponibili:"
+	@echo "all    : compila il codice sorgente"
 	@echo "install: copia l'eseguibile su /bin"
-	@echo "doc: genera la documentazione"
+	@echo "doc    : genera la documentazione"
 	@echo "threads: compila il codice usando le threads"
-	@echo "clean: rimuove i file temporanei di compilazione"
-	@echo "debug: compila il codice sorgente con gdb"
+	@echo "clean  : rimuove i file temporanei di compilazione"
+	@echo "debug  : compila il codice sorgente con gdb"
 
+# Copio l'eseguibile in 'bin/('
 install : MAKE_DIR_BIN | $(PROJECT)
 	cp $(D_BUILD)$(PROJECT) $(D_BIN)
 
+# Compilo la versione con i thread
 threads : THREAD := -D MULTITHREAD -lpthread
 threads : $(PROJECT)
 
+# Compilo la versione per il debug
 debug : DEBUG := -ggdb
 debug : $(PROJECT)
-	
+
 .PHONY: all clean doc help install threads debug

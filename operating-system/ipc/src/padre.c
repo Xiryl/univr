@@ -208,11 +208,10 @@ int check_keys(char* p_file_s1, void* p_s2, int file_lines) {
     int line = 0;
 
     while (line != file_lines) {
-        int length = 0;
-        char *clear = get_newline(p_file_s1, line, &length);
+        int  length     = 0;
+        char *clear     = get_newline(p_file_s1, line, &length);
         char *encrypted = load_encoded(clear);
-
-        unsigned *key = (unsigned *)(p_s2 + line);
+        unsigned *key   = (unsigned *)(p_s2 + line);
 
         // Sto analizzando la i-esima stringa
         line++;
@@ -253,7 +252,9 @@ char* get_newline(char* p_file_s1, int my_string, int* length) {
         if(p_file_s1[i] == '>') {
 
             current_line++;
+
             p_file_s1 = p_file_s1 + i + i + 4;
+            
             *length = i;
             i = 0;
         }

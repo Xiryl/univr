@@ -140,8 +140,8 @@ void status_updated(int _signal)
     int _id_string = status->id_string;
 
     if (_signal == SIGUSR1) {
-        char *grandson = itoa(status->grandson);
-        char *idString = itoa(status->id_string);
+        char *grandson = int_to_array(status->grandson);
+        char *idString = int_to_array(status->id_string);
         char *str1 = strcct("Il nipote ", grandson);
         char *str2 = strcct(str1, " sta analizzando la ");
         char *str3 = strcct(str2, idString);

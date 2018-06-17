@@ -137,7 +137,7 @@ void send_timeelapsed(time_t s_time) {
     end_message.mtype = 2;
     char *message = "chiave trovata in ";
 
-    char *timeToString = itoa(s_time);
+    char *timeToString = int_to_array(s_time);
 
     char *concat = strcct(message, timeToString);
     strcp(end_message.text, concat);
@@ -201,7 +201,7 @@ time_t get_timestamp() {
     return timer.tv_sec;
 }
 
-int save_key(unsigned key, void* p_s2) {
+void save_key(unsigned key, void* p_s2) {
     unsigned* tmp = (unsigned *) p_s2;
     *tmp = key;
 }

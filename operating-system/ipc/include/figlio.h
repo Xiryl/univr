@@ -1,5 +1,7 @@
-/** @file figlio.h
- *  @brief Header contente le funzioni del figlio.c
+/**
+ * @file figlio.h 
+ * @brief File contenente le costanti utilzzate del processo figlio.c
+ * @author Chiarani Fabio - VR408541
  */
 
 /** @name Funzioni*/

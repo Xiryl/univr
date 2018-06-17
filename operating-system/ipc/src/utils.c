@@ -25,17 +25,6 @@ void print_line(char *msg) {
     free(strWithNewline);
 }
 
-int unsignedLength(unsigned value) {
-    int count = 0;
-
-    while(value > 0) {
-        count ++;
-        value = value / 10;
-    }
-
-    return count;
-} 
-
 char* unsigned_to_string(unsigned msg) {
     unsigned n = msg;
     int lunghezza = 0;
@@ -76,7 +65,7 @@ int strsize(char *str) {
     return n;
 }
 
-char *itoa(int n) {
+char *int_to_array(int n) {
     int tmp = n;
     int digits = 0;
     do {
