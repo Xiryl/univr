@@ -73,7 +73,8 @@ char *int_to_array(int n) {
     } while((tmp /= 10) != 0);
 
     char *result = (char *)malloc((sizeof(char) * digits) + 1);
-    for (int i = digits - 1; i >= 0; i--) {
+    int i;
+    for (i = digits - 1; i >= 0; i--) {
         int digit = (n % 10);
         result[i] = (char)(digit + '0');
         n /= 10;
@@ -90,11 +91,12 @@ char *strcct(char *str1, char *str2) {
     int newStringIndex = 0;
     char *result = (char *)malloc(sizeof(char) * newStringSize);
 
-    for (int i = 0; i < len1; i++, newStringIndex++) {
+    int i;
+    for ( i = 0; i < len1; i++, newStringIndex++) {
         result[newStringIndex] = str1[i];
     }
 
-    for (int i = 0; i < len2; i++, newStringIndex++) {
+    for ( i = 0; i < len2; i++, newStringIndex++) {
         result[newStringIndex] = str2[i];
     }
 
@@ -153,10 +155,10 @@ void print_error(char *file, char *message)
 
 
 void detach_all_resources() {
-    int msg_id = msgget(MESSAGE_QUEUE_KEY, 0666);
-    int sem_id = semget(SEM_KEY, SEM_QTA, 0666);
-    int sh1_id = shmget(SHM_IN_KEY, 0, 0666);
-    int sh2_id = shmget(SHM_OUT_KEY, 0, 0666);
+    int msg_id = msgget(MESSAGE_QUEUE_KEY, PERMIX);
+    int sem_id = semget(SEM_KEY, SEM_QTA, PERMIX);
+    int sh1_id = shmget(SHM_IN_KEY, 0, PERMIX);
+    int sh2_id = shmget(SHM_OUT_KEY, 0, PERMIX);
 
     msgctl(msg_id, IPC_RMID, NULL);
     shmctl(sh1_id, IPC_RMID, NULL);

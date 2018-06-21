@@ -35,7 +35,7 @@ void logger() {
 
     // creo la coda dei messaggi
     int msg_id;
-    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, (0666|IPC_CREAT|IPC_EXCL))), "logger.c", "impossibile creare la coda dei messaggi");
+    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, (PERMIX|IPC_CREAT|IPC_EXCL))), "logger.c", "impossibile creare la coda dei messaggi");
  
     // polling sulla msg queue
     while(polling_receive(msg_id) != 1) {

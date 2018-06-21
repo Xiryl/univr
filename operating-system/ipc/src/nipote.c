@@ -60,10 +60,10 @@ void* nipote(void* params) {
     struct sembuf *sops = (struct sembuf *) malloc (sizeof(struct sembuf));
 
     // ottengo l'id della coda dei messaggi
-    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, 0666)), "nipote.c", "impossibile ottenere la coda dei messaggi");
+    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, PERMIX)), "nipote.c", "impossibile ottenere la coda dei messaggi");
 
     // ottengo il semaforo
-    HANDLE_ERROR( (semid = semget(SEM_KEY, SEM_QTA, 0666|IPC_EXCL)), "nipote.c", "impossibile ottenere il semaforo");
+    HANDLE_ERROR( (semid = semget(SEM_KEY, SEM_QTA, PERMIX|IPC_EXCL)), "nipote.c", "impossibile ottenere il semaforo");
 
     // *MUTEX*
     lock(0, semid, sops);

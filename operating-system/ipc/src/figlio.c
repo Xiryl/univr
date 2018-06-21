@@ -49,7 +49,7 @@ void figlio(void* p_s1, void* p_s2, int file_lines)
     sops = (struct sembuf *) malloc (sizeof(struct sembuf));
 
     // creo il semaforo
-    HANDLE_ERROR( (semid = semget(SEM_KEY, SEM_QTA, 0666|IPC_CREAT|IPC_EXCL)), "figlio.c", "impossibile creare ill semaforo");
+    HANDLE_ERROR( (semid = semget(SEM_KEY, SEM_QTA, PERMIX|IPC_CREAT|IPC_EXCL)), "figlio.c", "impossibile creare ill semaforo");
 
     // Imposto il semaforo
     sops->sem_num = 0;
@@ -175,7 +175,7 @@ int get_msg_id()
 {
     // ottengo l'id della coda dei messaggi
     int msg_id;
-    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, 0666)), "figlio.c", "impossibile creare la coda dei messaggi");
+    HANDLE_ERROR( (msg_id = msgget(MESSAGE_QUEUE_KEY, PERMIX)), "figlio.c", "impossibile creare la coda dei messaggi");
 
     return msg_id;
 }

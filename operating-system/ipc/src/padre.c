@@ -25,15 +25,16 @@
 // const
 #include "../include/defines.h"
 
-void padre(char* file_path, char* file_out_pat) {
+int test = 0;
+
+void padre(char* file_path, char* file_out_path) {
 
     // intercetto tutte le signal
-    signal(SIGINT,  signal_error_handler);
-	signal(SIGTERM, signal_error_handler);
-	signal(SIGQUIT, signal_error_handler);
-	signal(SIGSEGV, signal_error_handler);
-	signal(SIGPIPE, signal_error_handler);
-	signal(SIGTSTP, signal_error_handler);
+    signal(SIGINT,  signal_error_handler);  /* CRTRL + C*/
+	signal(SIGTERM, signal_error_handler);  /* General Terminal Signal */
+	signal(SIGQUIT, signal_error_handler);  /* CRTRL + \ */
+	signal(SIGSEGV, signal_error_handler);  /* Segmentation Fault */
+	signal(SIGTSTP, signal_error_handler);  /* CRTRL + Z */
 
     // provo a usare il file input. se NON va arresto
     HANDLE_ERROR(access(file_path, F_OK | R_OK), "padre.c", "impossibile leggere file input");
@@ -100,7 +101,7 @@ void padre(char* file_path, char* file_out_pat) {
 
             // Controllo che le chiavi generate siano corrette e le salvo
             if (check_keys(p_file_s1, p_s2, file_lines) == 1) {
-                save_keys("out.txt", p_s2, file_lines);
+                save_keys(file_out_path, p_s2, file_lines);
             } else {
                 print_line("Ho trovato una chiave calcolata sbagliata!");
             }
@@ -117,7 +118,7 @@ void padre(char* file_path, char* file_out_pat) {
 void* attach_segments(key_t key, int size) {
 
     // alloco la memoria con la key specificata
-    int res_shmem = shmget(key, size, 0666|IPC_CREAT);
+    int res_shmem = shmget(key, size, PERMIX|IPC_CREAT);
     if(res_shmem == -1) {
         HANDLE_ERROR(-1, "padre.c", "impossibile eseguire shmget");
     }
@@ -135,7 +136,7 @@ void* attach_segments(key_t key, int size) {
 int detach_segments(key_t key, int mem_size, void* shmaddr) {
 
     // recupero l'id della memoria con la get
-    int mem_id = shmget(key, mem_size, 0666);
+    int mem_id = shmget(key, mem_size, PERMIX);
 
     // scollego il segmento
     HANDLE_ERROR(shmdt(shmaddr), "padre.c", "impossibile eseguire il detach shmctl");
@@ -153,7 +154,7 @@ int load_file(char* file_path, char* p_file_s1) {
 
     // apro il file
     int fd;
-    HANDLE_ERROR( (fd = open(file_path, O_RDONLY, 0666)), "padre.c", "impossibile aprire il file_input");
+    HANDLE_ERROR( (fd = open(file_path, O_RDONLY, PERMIX)), "padre.c", "impossibile aprire il file_input");
 
     int readed = -1;
     int totale = 0;
@@ -176,20 +177,20 @@ int sizeofFile(char* file_path) {
 
     // apro il file
     int fd;
-    HANDLE_ERROR( (fd = open(file_path, O_RDONLY, 0666)), "padre.c", "impossibile aprire il file_input"); 
+    HANDLE_ERROR( (fd = open(file_path, O_RDONLY, PERMIX)), "padre.c", "impossibile aprire il file_input"); 
 
     int lines = 0;
     int n = 0;
     int offset = 0;
     while((n = read(fd, buffer, BUFFER_SIZE)) > 0) {
-        for (int i = 0; i < n; i++, offset++) {
+        int i;
+        for ( i = 0; i < n; i++, offset++) {
             if (buffer[i] == '>') {
                 lines++;
                 i += offset + 3;
 
                 offset = 0;
 
-                if(i > n) 
                 if (i > n) {
                     lseek(fd, i - n + 1, SEEK_CUR);
                 }
@@ -211,7 +212,11 @@ int check_keys(char* p_file_s1, void* p_s2, int file_lines) {
         int  length     = 0;
         char *clear     = get_newline(p_file_s1, line, &length);
         char *encrypted = load_encoded(clear);
-        unsigned *key   = (unsigned *)(p_s2 + line);
+        unsigned *key   = (unsigned *)(p_s2 + (line * sizeof(unsigned)));
+
+        while(*clear == '>') {
+            length++;
+        }
 
         // Sto analizzando la i-esima stringa
         line++;
@@ -222,9 +227,11 @@ int check_keys(char* p_file_s1, void* p_s2, int file_lines) {
             unsigned *c = (unsigned *) (clear);
             unsigned *e = (unsigned *) (encrypted);
 
-            if ((*e ^ *key) != *c) {
-                return 1;
+
+            if ( (*e ^ *key) != *c) {
+                return -1;
             }
+ 
             clear += 4;
             encrypted += 4;
         }
@@ -254,8 +261,7 @@ char* get_newline(char* p_file_s1, int my_string, int* length) {
             current_line++;
 
             p_file_s1 = p_file_s1 + i + i + 4;
-            
-            *length = i;
+
             i = 0;
         }
     }
@@ -267,9 +273,10 @@ void save_keys(char* path, void* p_s2, int lines) {
     
     // apro il file
     int fd;
-    HANDLE_ERROR( (fd = creat(path, O_RDWR ^ 0644)), "padre.c", "impossibile aprire il file_output"); 
+    HANDLE_ERROR( (fd = creat(path, O_RDWR ^ PERMIX)), "padre.c", "impossibile aprire il file_output"); 
 
-    for (int i = 0; i < lines; i++) {
+    int i;
+    for (i = 0; i < lines; i++) {
 
         int       offset  = (i * sizeof(unsigned));
         unsigned* key     = (unsigned *) (p_s2 + offset);

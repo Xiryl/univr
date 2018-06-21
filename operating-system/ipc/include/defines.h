@@ -15,6 +15,14 @@
 #endif
 
 /**
+ * @def PERMIX
+ * Costante indicante i permessi per le syscall
+ */
+#ifndef PERMIX
+#define PERMIX 0640
+#endif
+
+/**
  * @def BYTE_FOR_INPUT_FILE_ROW
  * Costante indicante i byte massimi necessari per ogni riga di input
  */

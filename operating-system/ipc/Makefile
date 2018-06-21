@@ -36,7 +36,7 @@ MAKE_DIR_BIN :
 	mkdir -p $(D_BIN)
 
 # compilo il progetto
-all : $(PRIOJECT)
+all : $(PROJECT)
 
 # Svuoto 'build/*.o' ed elimino l'eseguibile al suo interno
 clean : 
