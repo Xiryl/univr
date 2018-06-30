@@ -6,7 +6,13 @@ Each folder of the repo corresponds to an argument. You can find these topics:
 
 - `Network Security`
   - Java Socket
-  - Notes, Docs and Summaries
+  - CISCO
+  - Docs and Summaries
+  - Past Exams
 - `Operating System`
   - Bash
   - IPC
+  - Docs and Summaries
+- `Java Programming`
+  - Java Snippets
+
