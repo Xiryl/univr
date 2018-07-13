@@ -15,4 +15,9 @@ Each folder of the repo corresponds to an argument. You can find these topics:
   - Docs and Summaries
 - `Java Programming`
   - Java Snippets
+- `Network System`
+  - Docs and Summaries
+- `Computer Architecture`
+  - ASM
+  - SIS
 
