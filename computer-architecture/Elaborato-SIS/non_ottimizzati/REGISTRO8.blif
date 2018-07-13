@@ -1,0 +1,16 @@
+.model REGISTRO8
+
+.inputs A7 A6 A5 A4 A3 A2 A1 A0
+.outputs X7 X6 X5 X4 X3 X2 X1 X0
+
+.subckt REGISTRO1 A0=A7 X0=X7
+.subckt REGISTRO1 A0=A6 X0=X6
+.subckt REGISTRO1 A0=A5 X0=X5
+.subckt REGISTRO1 A0=A4 X0=X4
+.subckt REGISTRO1 A0=A3 X0=X3
+.subckt REGISTRO1 A0=A2 X0=X2
+.subckt REGISTRO1 A0=A1 X0=X1
+.subckt REGISTRO1 A0=A0 X0=X0
+
+.search REGISTRO1.blif
+.end

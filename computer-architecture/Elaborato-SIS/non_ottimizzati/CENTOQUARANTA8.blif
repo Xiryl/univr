@@ -1,0 +1,16 @@
+.model CENTOQUARANTA8
+
+.outputs X7 X6 X5 X4 X3 X2 X1 X0
+
+.subckt UNO1 X0=X7
+.subckt ZERO1 X0=X6
+.subckt ZERO1 X0=X5
+.subckt ZERO1 X0=X4
+.subckt UNO1 X0=X3
+.subckt UNO1 X0=X2
+.subckt ZERO1 X0=X1
+.subckt ZERO1 X0=X0
+
+.search UNO1.blif
+.search ZERO1.blif
+.end

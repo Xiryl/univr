@@ -1,0 +1,19 @@
+.model SOMMATORE1
+
+.inputs A0 B0 CIN
+.outputs X0 COUT
+
+.names A0 B0 K
+10 1
+01 1
+
+.names K CIN X0
+10 1
+01 1
+
+.names A0 B0 CIN COUT
+11- 1
+1-1 1
+-11 1
+
+.end

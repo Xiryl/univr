@@ -1,0 +1,10 @@
+.model TRE2
+
+.outputs X1 X0
+
+.subckt UNO1 X0=X1
+.subckt UNO1 X0=X0
+
+.search UNO1.blif
+.search ZERO1.blif
+.end

@@ -1,0 +1,219 @@
+.model FSMD
+.inputs INIT RESET PH7 PH6 PH5 PH4 PH3 PH2 PH1 PH0
+.outputs ST1 ST0 NCK7 NCK6 NCK5 NCK4 NCK3 NCK2 NCK1 NCK0 VLV1 VLV0
+.default_input_arrival 0.00 0.00 
+.default_output_required 0.00 0.00 
+.default_input_drive 0.20 0.20 
+.default_output_load 1.00 
+.default_max_input_load 999.00 
+.latch    [23761] USCITAREGISTRO7 re NIL 0
+.latch    [24179] USCITAREGISTRO6 re NIL 0
+.latch    [24190] USCITAREGISTRO5 re NIL 0
+.latch    [24214] USCITAREGISTRO4 re NIL 0
+.latch    [23759] USCITAREGISTRO3 re NIL 0
+.latch    [23760] USCITAREGISTRO2 re NIL 0
+.latch    [23758] USCITAREGISTRO1 re NIL 0
+.latch    [24195] USCITAREGISTRO0 re NIL 0
+.latch    [24111] LatchOut_v5 re NIL 0
+.latch    [23763] LatchOut_v6 re NIL 1
+.names USCITAREGISTRO7 [23946]
+0 1
+.names RESET [24005]
+0 1
+.names PH7 [23952]
+0 1
+.names PH3 PH2 PH1 PH0 [23119]
+0000 1
+.names PH4 [23955]
+0 1
+.names [23119] [23955] [22600]
+00 1
+.names PH6 PH5 [22600] [24108]
+0-- 1
+-00 1
+.names [24005] INIT [23952] [24108] [23961]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [23961] [24113]
+0 1
+.names PH3 PH2 [23962]
+0- 1
+-0 1
+.names PH5 [23954]
+0 1
+.names [23962] [23954] [23955] [23123]
+000 1
+.names PH6 [23123] [23090]
+00 1
+.names PH6 [23953]
+0 1
+.names [23954] [23953] PH7 [23965]
+0-- 1
+-0- 1
+--0 1
+.names PH1 PH0 [23125]
+00 1
+.names [23955] [23125] [23962] [23966]
+0-- 1
+-00 1
+.names PH7 [23090] [23965] [23966] [24134]
+00-- 1
+--00 1
+.names [24134] [24005] INIT [24343]
+0-- 1
+-0- 1
+--0 1
+.names [24343] ST1
+0 1
+.names [24113] [24343] ST1 [23961] ST0
+00-- 1
+--00 1
+.names LatchOut_v5 [23949]
+0 1
+.names ST0 [23949] LatchOut_v5 [24113] [24149]
+00-- 1
+--00 1
+.names LatchOut_v6 [23968]
+0 1
+.names ST1 [24113] [23268]
+01 1
+.names [24149] [23968] ST1 [23268] LatchOut_v5 LatchOut_v6 [24151]
+111--- 1
+---111 1
+.names USCITAREGISTRO5 [23972]
+0 1
+.names USCITAREGISTRO1 [23974]
+0 1
+.names USCITAREGISTRO0 [23975]
+0 1
+.names [23974] [23975] [23239]
+00 1
+.names USCITAREGISTRO2 [23239] USCITAREGISTRO4 USCITAREGISTRO3 [23981]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [23972] [23981] [22595]
+00 1
+.names [22595] USCITAREGISTRO6 [24174]
+01 1
+10 1
+.names [24151] [24174] [24176]
+0- 1
+-0 1
+.names [23946] USCITAREGISTRO6 [24176] [24151] [24181]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [24176] NCK6
+0 1
+.names USCITAREGISTRO6 [23947]
+0 1
+.names NCK6 [23947] [24151] [23085]
+00- 1
+0-0 1
+.names [24181] [23085] [23946] NCK7
+0-- 1
+-00 1
+.names NCK7 [23761]
+1 1
+.names NCK6 [24179]
+1 1
+.names [23981] USCITAREGISTRO5 [24185]
+0- 1
+-0 1
+.names [24185] USCITAREGISTRO5 [23981] [24187]
+0-- 1
+-00 1
+.names [24151] [24187] [24189]
+0- 1
+-0 1
+.names [24189] NCK5
+0 1
+.names NCK5 [24190]
+1 1
+.names USCITAREGISTRO4 [23978]
+0 1
+.names USCITAREGISTRO3 [23979]
+0 1
+.names USCITAREGISTRO2 [23973]
+0 1
+.names [23973] USCITAREGISTRO1 [24151] USCITAREGISTRO0 [24192]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [23975] [24151] [23987]
+0- 1
+-0 1
+.names [23987] NCK0
+0 1
+.names NCK0 [23974] [24151] [23089]
+00- 1
+0-0 1
+.names [24192] [23089] [23973] NCK2
+0-- 1
+-00 1
+.names NCK2 [24203]
+0 1
+.names [23979] USCITAREGISTRO2 [24151] [24203] [24205]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names NCK2 [23973] [24151] [23088]
+00- 1
+0-0 1
+.names [24205] [23088] [23979] NCK3
+0-- 1
+-00 1
+.names [23978] NCK3 [23979] [24211]
+0-- 1
+-00 1
+.names [23981] [24151] [24211] [24213]
+0-- 1
+-0- 1
+--0 1
+.names [24213] NCK4
+0 1
+.names NCK4 [24214]
+1 1
+.names NCK3 [23759]
+1 1
+.names NCK2 [23760]
+1 1
+.names [24151] [23974] USCITAREGISTRO0 [24216]
+0-- 1
+-0- 1
+--0 1
+.names [24216] [23974] [23987] NCK1
+0-- 1
+-00 1
+.names NCK1 [23758]
+1 1
+.names NCK0 [24195]
+1 1
+.names [24113] [24111]
+1 1
+.names [24343] [23763]
+1 1
+.names USCITAREGISTRO2 USCITAREGISTRO6 USCITAREGISTRO7 USCITAREGISTRO5 [23782]
+0000 1
+.names [23782] [23978] [23979] [24222]
+0-- 1
+-0- 1
+--0 1
+.names ST0 [23968] [24222] [23997]
+0-- 1
+-0- 1
+--0 1
+.names [23997] LatchOut_v5 [24113] VLV1
+000 1
+.names LatchOut_v5 [24113] [23769]
+11 1
+.names [23769] ST0 [24222] LatchOut_v6 VLV0
+1111 1
+.end

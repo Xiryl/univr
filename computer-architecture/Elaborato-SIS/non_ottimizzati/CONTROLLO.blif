@@ -1,0 +1,86 @@
+.model CONTROLLO
+
+# Definisco gli inputs
+.inputs INIT RESET SS1 SS0 FC
+# Definisco gli outputs
+.outputs ST1 ST0 VLV1 VLV0 START
+
+# Definisco l'STG
+.start_kiss
+
+# Numero inputs
+.i 5
+# Numero outputs
+.o 5
+# Numero stati
+.s 4
+# Numero transazioni
+.p 27
+# Stato iniziale
+.r INIZIO
+
+# Tabella delle transazioni
+# (ingressi, stato presente, stato prossimo, uscita)
+
+# STATO INIZIO
+# Macchina spenta e reset
+0---- INIZIO INIZIO 00000
+11--- INIZIO INIZIO 00000
+# Vai allo stato e avvia conteggio
+# A
+1000- INIZIO A 01000
+# N
+1010- INIZIO N 10000
+# B
+1011- INIZIO B 11000
+# ERR
+1001- INIZIO INIZIO 00000
+
+# STATO A (Codice: 01) (Datapath: 00)
+# Macchina spenta e reset
+0---- A INIZIO 00000
+11--- A INIZIO 00000
+# Tutto ok
+10000 A A 01001
+10001 A A 01011
+# Lo stato è cambiato
+# B
+1011- A B 11000
+# N
+1010- A N 10000
+# ERR
+1001- A INIZIO 00000
+
+# STATO B (Codice: 11) (Datapath: 11)
+# Macchina spenta e reset
+0---- B INIZIO 00000
+11--- B INIZIO 00000
+# Tutto ok
+10110 B B 11001
+10111 B B 11101
+# Lo stato è cambiato
+# A
+1000- B A 01000
+# N
+1010- B N 10000
+# ERR
+1001- B INIZIO 00000
+
+# STATO N (Codice: 10) (Datapath: 10)
+# Macchina spenta e reset
+0---- N INIZIO 00000
+11--- N INIZIO 00000
+# Tutto ok
+10100 N N 10001
+10101 N N 10001
+# Lo stato è cambiato
+# A
+1000- N A 01000
+# B
+1011- N B 11000
+# ERR
+1001- N INIZIO 00000
+
+.end_kiss
+
+.end

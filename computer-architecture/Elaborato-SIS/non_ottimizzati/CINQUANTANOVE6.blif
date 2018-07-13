@@ -1,0 +1,12 @@
+.model CINQUANTANOVE6
+
+.outputs X5 X4 X3 X2 X1 X0
+
+.subckt UNO1 X0=X5
+.subckt UNO1 X0=X4
+.subckt UNO1 X0=X3
+.subckt ZERO1 X0=X2
+.subckt UNO1 X0=X1
+.subckt UNO1 X0=X0
+
+.end

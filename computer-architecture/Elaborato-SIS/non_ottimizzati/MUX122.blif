@@ -1,0 +1,17 @@
+# S0 0 => A1 A0
+# S0 1 => B1 B0
+
+.model MUX122
+
+.inputs S0 A1 A0 B1 B0
+.outputs X1 X0
+
+.names S0 A1 B1 X1
+01- 1
+1-1 1
+
+.names S0 A0 B0 X0
+01- 1
+1-1 1
+
+.end
