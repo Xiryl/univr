@@ -1,0 +1,5 @@
+dbUser=root
+dbPassword=fabioluigi
+dbHost=localhost
+dbPort=3306
+AESKey=F45EF73E453A6E69E7230205EF95992A

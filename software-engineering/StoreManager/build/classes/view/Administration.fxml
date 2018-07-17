@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdministrationController">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="496.0" style="-fx-border-color: #F9F7FA;">
+         <children>
+            <Label layoutX="163.0" layoutY="79.0" prefHeight="37.0" prefWidth="211.0" text="Type of article" textAlignment="CENTER" textFill="#eb595c">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="172.0" prefHeight="22.0" prefWidth="61.0" text="Name">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label layoutX="81.0" layoutY="226.0" prefHeight="22.0" prefWidth="99.0" text="Description">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label layoutX="81.0" layoutY="286.0" prefHeight="22.0" prefWidth="61.0" text="Sport">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label layoutX="82.0" layoutY="348.0" prefWidth="120.0" text="Materials">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <JFXTextField fx:id="typeArticleName" focusColor="#e8e8e8" labelFloat="true" layoutX="209.0" layoutY="169.0" prefWidth="200.0" promptText="Article Name" unFocusColor="#393939" />
+            <JFXTextField fx:id="typeArticleDescription" focusColor="#e8e8e8" labelFloat="true" layoutX="209.0" layoutY="224.0" prefWidth="200.0" promptText="Article Description" />
+            <JFXTextField fx:id="typeArticleMaterials" focusColor="#e8e8e8" labelFloat="true" layoutX="209.0" layoutY="345.0" prefWidth="200.0" promptText="Material1 Material2 ..." />
+            <JFXButton fx:id="btnTypeOfArticleDeleteData" layoutX="83.0" layoutY="491.0" onAction="#handleDeleteTypeOfArticleData" prefHeight="31.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #E4676B;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" />
+            <JFXButton fx:id="btnInsertTypeOfArticle" layoutX="290.0" layoutY="491.0" onAction="#handleInsertTypeOfArticleClick" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #82E76F;" text="INSERT" textFill="WHITE" />
+            <Label layoutX="179.0" layoutY="42.0" prefHeight="37.0" prefWidth="179.0" text="Create New" textAlignment="CENTER" textFill="#eb595c">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Text fill="#5e5e5e" layoutX="71.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This operation create a new type of article. All fields are required" textAlignment="CENTER" wrappingWidth="351.21875" />
+            <JFXComboBox id="cboxArticleSport" fx:id="cboxArticleSport" focusColor="#e4e4e4" labelFloat="true" layoutX="209.0" layoutY="284.0" onAction="#initializeSport" prefHeight="27.0" prefWidth="200.0" promptText="Choose Category" />
+            <JFXButton fx:id="btnWareHouseHistory" layoutX="141.0" layoutY="454.0" onAction="#handleBtnWareHouseHistory" prefHeight="22.0" prefWidth="211.0" style="-fx-background-color: #4F4F4F;" text="View Warehouse Movement" textFill="WHITE" wrapText="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="503.0" layoutY="1.0" prefHeight="599.0" prefWidth="496.0" style="-fx-border-color: #F9F7FA;">
+         <children>
+            <Label layoutX="292.0" layoutY="64.0" text="Article" textFill="#eb595c">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="articleDateOfProduction" focusColor="#e8e8e8" layoutX="201.0" layoutY="352.0" prefHeight="27.0" prefWidth="223.0" promptText="Date of Production dd/MM/yyyy" />
+            <JFXTextField fx:id="articlePrice" focusColor="#e8e8e8" layoutX="201.0" layoutY="294.0" prefHeight="27.0" prefWidth="223.0" promptText="Article Price (format xx.y)" />
+            <Label layoutX="69.0" layoutY="354.0" prefHeight="22.0" prefWidth="92.0" text="Date">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label layoutX="69.0" layoutY="296.0" prefWidth="120.0" text="Price">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label layoutX="65.0" layoutY="190.0" prefWidth="120.0" text="Type of article">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <JFXButton fx:id="btnInsertArticle" layoutX="313.0" layoutY="497.0" onAction="#handleInsertArticleClick" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #82E76F;" text="INSERT" textFill="WHITE" />
+            <Label layoutX="113.0" layoutY="64.0" prefHeight="37.0" prefWidth="179.0" text="Create New" textAlignment="CENTER" textFill="#eb595c">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnArticleDeleteData" layoutX="80.0" layoutY="497.0" onAction="#handleDeleteArticleData" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #EB595C;" text="CLEAR" textFill="WHITE" />
+            <Text fill="#5e5e5e" layoutX="80.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This operation create a new article. All fields are required" textAlignment="CENTER" wrappingWidth="351.21875" />
+            <JFXComboBox fx:id="cboxArticlesList" focusColor="#e4e4e4" labelFloat="true" layoutX="201.0" layoutY="187.0" onAction="#cboxArticleOnActionHandler" prefHeight="27.0" prefWidth="200.0" promptText="Choose Article Type" />
+            <Text id="articleDescription" fx:id="articleDescription" fill="#5e5e5e" layoutX="201.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description: " textAlignment="CENTER" wrappingWidth="200.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

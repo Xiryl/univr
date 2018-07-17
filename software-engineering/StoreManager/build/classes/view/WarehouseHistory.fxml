@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WarehouseHistoryController">
+   <children>
+      <Text fill="#d72e2e" layoutX="407.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Historty">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <TableView fx:id="listTableView" layoutX="9.0" layoutY="42.0" prefHeight="490.0" prefWidth="937.0">
+        <columns>
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderController">
+   <children>
+      <JFXTextField fx:id="orderQuantity" focusColor="#dddddd" labelFloat="true" layoutX="316.0" layoutY="297.0" prefWidth="200.0" promptText="Numbers (i.e. 3)" />
+      <JFXTextField fx:id="orderTotalPrice" focusColor="#dddddd" layoutX="316.0" layoutY="411.0" prefWidth="200.0" promptText="Price (format xx.y)" />
+      <Label layoutX="153.0" layoutY="122.0" prefWidth="120.0" text="Store name">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="152.0" layoutY="179.0" prefHeight="22.0" prefWidth="141.0" text="Article type">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="153.0" layoutY="300.0" prefHeight="22.0" prefWidth="150.0" text="Number of pieces">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="155.0" layoutY="414.0" prefWidth="120.0" text="Total price">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <JFXTextField fx:id="orderDate" focusColor="#dddddd" layoutX="316.0" layoutY="354.0" prefWidth="200.0" promptText="Date format dd/mm/yyyy" />
+      <Label layoutX="155.0" layoutY="357.0" prefWidth="120.0" text="Date">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="191.0" layoutY="30.0" text="Make a New Order" textFill="#eb595c">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnOrderNow" layoutX="434.0" layoutY="508.0" onAction="#handleOrderNowClick" prefWidth="150.0" style="-fx-background-color: #82E76F;" text="ORDER NOW" textFill="WHITE" />
+      <JFXButton fx:id="btnDeleteOrderData" layoutX="85.0" layoutY="508.0" onAction="#handlebtnDeleteOrderDataClick" prefWidth="150.0" style="-fx-background-color: #EB595C;" text="CLEAR" textFill="WHITE" />
+      <JFXButton fx:id="btnOrderSummary" layoutX="263.0" layoutY="508.0" onAction="#handleOrderSummaryClick" prefWidth="150.0" style="-fx-background-color: #7D7B7C;" text="ORDER HISTORY" textFill="WHITE" />
+      <JFXComboBox fx:id="cboxArticletypes" focusColor="#d3d3d3" layoutX="317.0" layoutY="177.0" prefHeight="27.0" prefWidth="200.0" promptText="Choose an Article Type" />
+      <JFXComboBox fx:id="cboxStoreName" focusColor="#d3d3d3" labelFloat="true" layoutX="317.0" layoutY="120.0" prefHeight="27.0" prefWidth="200.0" promptText="Choose A Store" />
+      <JFXComboBox fx:id="cboxCouriers" focusColor="#d3d3d3" labelFloat="true" layoutX="317.0" layoutY="239.0" prefHeight="27.0" prefWidth="200.0" promptText="Choose a courier" />
+      <Label layoutX="152.0" layoutY="241.0" prefHeight="22.0" prefWidth="141.0" text="Courier">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
