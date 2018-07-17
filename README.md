@@ -10,14 +10,16 @@ Each folder of the repo corresponds to an argument. You can find these topics:
   - Docs and Summaries
   - Past Exams
 - `Operating System`
-  - Bash
-  - IPC
+  - Elaborato Bash 2018
+  - Elaborato IPC 2018
   - Docs and Summaries
 - `Java Programming`
   - Java Snippets
 - `Network System`
   - Docs and Summaries
 - `Computer Architecture`
-  - ASM
-  - SIS
+  - ASM 2017
+  - SIS 2017
+- `Software Engineering`
+  - Elaborato 2018
 
