@@ -50,6 +50,7 @@
 		FERMATA(+underline[TRENO, STAZIONE], ORARIO)
 	\end{Verbatim}
 
+	% ------ SELECT ------
 	\section{Clausola SELECT}
 	\verb SELECT <ListaAttributi>  , dove \emph{<ListaAttributi>} è una lista di espressioni con la seguente sintassi:
 	\begin{Verbatim}
@@ -67,6 +68,7 @@
 		\item \verb DISTINCT  serve per eliminare i duplicati nella relazione risultato. Non produce quindi risultati (se ho una superchiave non serve)
 	\end{itemize}
 
+	% ------ FROM ------
 	\section{Clausola FROM}
 	\verb FROM <ListaTabelle>  , dove \emph{<ListaTabelle>} è una lista di espressioni con la seguente sintassi:
 	\begin{Verbatim}
@@ -79,6 +81,27 @@
 		\item Se ci sono più tabelle, la semantica prevede che si genera il prodotto cartesiano tra le tabelle e poi si applica il prodotto (clausola) WHERE. Non viene eseguito alcun JOIN naturale.
 		\item Non c'è dipendenza dallo schema: gli attributi vengono denotati con: \verb <NomeTabella>.<NomeAttributo>  se ci sono due attributi con nomi uguali in due tabelle distinte.
 	\end{itemize}
+	
+	% ------ WHERE ------
+	\section{Clausola FROM}
+	\verb WHERE <ListaCondizioni>  , dove \emph{<ListaCondizioni>} è un espressionne booleana ottenuta combinando condizioni semplici AND-OR-NOT.
+
+	% ------ VARIABILI TUPLA ------
+	\section{Variabili di tupla}
+	Le variabili di tupla (\emph{alias di tabella}) vengono usate per risolvere ambiguità sui nome degli attributi e per gestire il riferimento a più volte della stessa tabella.
+	Esempio:
+	\begin{Verbatim}
+	SELECT C.NOME, C.COGNOME
+	FROM CONTO as C
+	\end{Verbatim}
+
+	% ------ ORDER BY ------
+	\section{Clausola ORDER BY}
+	Questa clausola consente l'ordinamento, la sua sintassi è la seguente:
+	\begin{Verbatim}
+	SELECT [...] FROM [...] WHERE [...]
+	ORDER BY <Attributo> [<ASCI|DESC>] {, <Attributo> [<ASCI|DESC>]}
+	\end{Verbatim}
 	
 
 

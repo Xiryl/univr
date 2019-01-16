@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.3)  9 JAN 2019 10:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.3)  16 JAN 2019 13:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -108,7 +108,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \c@FancyVerbLine=\count107
 \FV@StepNumber=\count108
 \FV@OutFile=\write3
-) (./sql-basi-di-dati.aux)
+) (.//sql-basi-di-dati.aux)
 \openout1 = `sql-basi-di-dati.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -131,7 +131,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 14.
- (./sql-basi-di-dati.toc
+ (.//sql-basi-di-dati.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -156,28 +156,28 @@ Overfull \hbox (44.80098pt too wide) in paragraph at lines 33--37
 \T1/cmr/m/n/10 Lo \T1/cmr/m/it/10 schema \T1/cmr/m/n/10 risul-tante di una \T1/cmr/m/it/10 query \T1/cmr/m/n/10 è cos-ti-tu-ito dagli at-tributi in-di-cati in [][]\T1/cmtt/m/n/10 <ListaAttributi>
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 63.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
  [2]
-Overfull \hbox (1.19937pt too wide) in paragraph at lines 80--81
+Overfull \hbox (1.19937pt too wide) in paragraph at lines 82--83
 [][]\T1/cmtt/m/n/10 <NomeTabella>.<NomeAttributo> []\T1/cmr/m/n/10 se ci sono due at-tributi con nomi uguali
  []
 
-[3] (./sql-basi-di-dati.aux) ) 
+[3] (.//sql-basi-di-dati.aux) ) 
 Here is how much of TeX's memory you used:
- 2161 strings out of 492649
- 28626 string characters out of 6129622
+ 2162 strings out of 492649
+ 28647 string characters out of 6129622
  104359 words of memory out of 5000000
  6041 multiletter control sequences out of 15000+600000
  12765 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,6n,23p,864b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on sql-basi-di-dati.pdf (3 pages, 158577 bytes).
+Output written on .//sql-basi-di-dati.pdf (3 pages, 164228 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream

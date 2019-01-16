@@ -1,6 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1547024811 "/Users/fabio/Project/Internal/univr/2018-2019/basi-di-dati/sql-basi-di-dati.tex" "sql-basi-di-dati.pdf" "sql-basi-di-dati" 1547024811
-  "/Users/fabio/Project/Internal/univr/2018-2019/basi-di-dati/sql-basi-di-dati.tex" 1547024810 3332 bb990e9292ef5ae1b6df5110086c38b2 ""
+["pdflatex"] 1547641248 "/Users/fabio/Project/Internal/univr/2018-2019/basi-di-dati/sql-basi-di-dati.tex" "sql-basi-di-dati.pdf" "sql-basi-di-dati" 1547641248
+  "/Users/fabio/Project/Internal/univr/2018-2019/basi-di-dati/sql-basi-di-dati.tex" 1547641248 4166 09709cb5ae6c6efd4edc22b42d11c850 ""
+  "/sql-basi-di-dati.aux" 0 -1 0 ""
+  "/sql-basi-di-dati.toc" 0 -1 0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1480098666 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1480098696 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -56,11 +58,14 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1543822131 4220280 27562f8ec72a9fc8815e1af9377119a8 ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "sql-basi-di-dati.aux" 1547024811 414 77d33786c32ed25a78c07ccd18583eea ""
-  "sql-basi-di-dati.tex" 1547024810 3332 bb990e9292ef5ae1b6df5110086c38b2 ""
-  "sql-basi-di-dati.toc" 1547024811 317 7890e612ae73a985deac175d46860a41 ""
+  "sql-basi-di-dati.aux" 1547641248 648 adc5e8051844eba721de789c2c48c9db ""
+  "sql-basi-di-dati.tex" 1547641248 4166 09709cb5ae6c6efd4edc22b42d11c850 ""
   (generated)
   "sql-basi-di-dati.aux"
-  "sql-basi-di-dati.toc"
-  "sql-basi-di-dati.log"
+  "/sql-basi-di-dati.aux"
   "sql-basi-di-dati.pdf"
+  "sql-basi-di-dati.toc"
+  "/sql-basi-di-dati.toc"
+  "sql-basi-di-dati.log"
+  "/sql-basi-di-dati.log"
+  "/sql-basi-di-dati.pdf"
