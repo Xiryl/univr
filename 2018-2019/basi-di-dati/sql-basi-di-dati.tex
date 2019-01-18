@@ -38,17 +38,17 @@
 		\subsection{Schema di appoggio}
 		Per gli esempi in questa prima parte utilizzerò il sequente schema:
 
+		\begin{Verbatim}[commandchars=+\[\]]
+		TRENO(+underline[NUM], CAT, PART, ARRIVO, DEST)
+		FERMATA(+underline[TRENO, STAZIONE], ORARIO)
+		\end{Verbatim}
+
 		\subsection{Visite}
 		La visita è una relazione derivata. Si specifica l'espressione che  genera il suo contenuto. Esso dipende quindi dalle 
 		relazioni che compaiono nell'espressione.
 
 		Una visita si dice \emph{virtuale} se viene calcolata ogni volta che serve. 
 		Una visita si dice \emph{materializzata} se viene calcolata e memorizzata esplicitamente nella base di dati.
-
-	\begin{Verbatim}[commandchars=+\[\]]
-		TRENO(+underline[NUM], CAT, PART, ARRIVO, DEST)
-		FERMATA(+underline[TRENO, STAZIONE], ORARIO)
-	\end{Verbatim}
 
 	% ------ SELECT ------
 	\section{Clausola SELECT}
@@ -83,7 +83,7 @@
 	\end{itemize}
 	
 	% ------ WHERE ------
-	\section{Clausola FROM}
+	\section{Clausola WHERE}
 	\verb WHERE <ListaCondizioni>  , dove \emph{<ListaCondizioni>} è un espressionne booleana ottenuta combinando condizioni semplici AND-OR-NOT.
 
 	% ------ VARIABILI TUPLA ------
@@ -104,6 +104,60 @@
 	\end{Verbatim}
 	
 
+	\begin{itemize}
+		\item L'ordine degli attributi determina l'ordine dell'ordinamento.
+	\end{itemize}
 
+	Esempio di una \emph{query}:
+	\begin{Verbatim}
+	SELECT Numero, Partenza
+	FROM TRENO
+	WHERE CAT='FrecciaArgento'
+	ORDER BY Part
+	\end{Verbatim}
+	La sequente query ordinerà per Partenza la tabella risultato. 
 		
+	% ------ INTERROG NIDIFICATE ------
+	\section{Interrogazioni Nidificate}
+	Un'interrogazione nidificata è ottenuta quando nella clausola \verb WHERE  compare un \textbf{predicato complesso}, vale a dire
+	un predicato che contiene un'altra interrogazione SQL.
+
+	\begin{Verbatim}
+	SELECT ...
+	FROM ...
+	WHERE <espr> [theta] (SELECT ... FROM ... WHERE ...)
+	\end{Verbatim}
+
+	Un \textbf{predicato complesso} è un predicato che confronta il valore di un attributo (o espressione) con il risultato di un altra interrogazione SQL.	
+	\newline
+	\newline
+	\emph{Attenzione: nel caso tipico l'interrogazione nidificata è mono-attributo, ossia nella clausola SELECT è presente un solo attributo.}
+	\newline
+	\newline
+	I predicati complessi sono:
+	\begin{itemize}
+		\item \verb A  op ANY  : questo predicato è soddisfatto dalla tupla \emph{t} se esiste almeno un valore \emph{v} contenuto nel risultato della query nidificata verifica la condizione:
+		\emph{t[A] op v}
+		\item \verb A  op ALL  : questo predicato è soddisfatto dalla tupla \emph{t} se per ogni valore \emph{v} contenuto nel risultato della query nidificata verifica la condizione:
+		\emph{t[A] op v}
+		\item \verb EXISTS(q) / NOT EXISTS(q)  : ritorna true se \emph{q} produce almeno una tupla, false altrimenti. \emph{q} è una interrogazione.
+	\end{itemize}
+
+	Tips:
+	\begin{itemize}
+		\item \verb =ANY  si può scrivere \verb IN  .
+		\item \verb <>ANY  si può scrivere \verb NOT IN  .
+	\end{itemize} 
+
+	\subparagraph{Categorizzazione delle Interrogazioni Nidificate}
+	Le interrogazioni nidificate si possono categorizzare nel seguente modo: \textbf{indipendenti e dipendenti}.
+
+	Si dicono interrogazioni \textbf{indipendenti} rispetto all'interrogazione esterna che le contiene: in questo caso l'interrogazione interna viene valutata
+	una sola volta in quanto non dipende dalla tupla esterna. L'indipendenza consiste nel fatto che non ci sono variabili di tupla condivise tra l'interrogazione interna ed esterna.
+	\newline
+	\newline
+	Si dicono interrogazioni \textbf{dipendenti} rispetto all'interrogazione esterna che le contiene: in questo caso l'interrogazione interna viene valutata
+	ogni volta e condivide una variabile di tupla che realizza il cosidetto \emph{"passaggio di binding"}.
+
+
 \end{document}
