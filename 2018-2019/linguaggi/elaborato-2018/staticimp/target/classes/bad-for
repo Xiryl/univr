@@ -1,4 +1,0 @@
-nat n;
-for (n = true; true; skip) {
-    skip
-}
