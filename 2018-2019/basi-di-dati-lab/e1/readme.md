@@ -2,7 +2,7 @@
 
 - [Es1](#esercizio-1) :white_check_mark:
 - [Es2](#esercizio-2) :white_check_mark:
-- [Es3](#esercizio-3) :x:
+- [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :x:
 - [Es5](#esercizio-5) :x:
 - [Es6](#esercizio-6) :x:
@@ -112,3 +112,30 @@ SELECT * FROM museo;
  Arena         | Verona | piazza Bra          | 0458003204     | MAR            |     20
  CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |     15
 ```
+
+### Esercizio 3
+
+> _Popolare le tabelle Opera e Mostra con almeno altre tre tuple ciascuna._
+
+1) popolo `opera`
+
+```sql
+INSERT INTO opera (nome, cognomeAutore, nomeAutore, museo, citta, epoca, anno)
+    VALUES ('La Guernica', 'Picasso', 'Pablo',  'Arena', 'Verona', 'medioevo', 1937),
+            ('Urlo', 'Munch', 'Edward', 'Arena', 'Verona', 'medioevo', 1983),
+            ('Graffiti, pietra su grotta', 'Homo', 'Sapiens','CastelVecchio', 'Verona', 'pietra', 1200);
+```
+
+1-a) verifico
+
+```sql
+SELECT * FROM opera;
+
+            nome            | cognomeautore | nomeautore |     museo     | citta  |  epoca   | anno
+----------------------------+---------------+------------+---------------+--------+----------+------
+ La Guernica                | Picasso       | Pablo      | Arena         | Verona | medioevo | 1937
+ Urlo                       | Munch         | Edward     | Arena         | Verona | medioevo | 1983
+ Graffiti, pietra su grotta | Homo          | Sapiens    | CastelVecchio | Verona | pietra   | 1200
+ ```
+
+2) popolo `mostra`
