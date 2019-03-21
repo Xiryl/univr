@@ -87,3 +87,19 @@ CREATE TABLE orario (
 Soluzione:
 
 1) creo le insert
+
+```sql
+INSERT INTO museo (nome, citta, indirizzo, numeroTelefono, giornoChiusura, prezzo) 
+    VALUES ('Arena', 'Verona', 'piazza Bra', '0458003204', 'MAR', 20);
+```
+
+2) verifico
+
+```sql
+SELECT * FROM museo;
+
+     nome      | citta  |      indirizzo      | numerotelefono | giornochiusura | prezzo
+---------------+--------+---------------------+----------------+----------------+--------
+ Arena         | Verona | piazza Bra          | 0458003204     | MAR            |     20
+ CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |     15
+```
