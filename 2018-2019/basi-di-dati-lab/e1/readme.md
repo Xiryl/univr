@@ -301,3 +301,38 @@ SELECT * FROM mostra;
  Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona |       100.00 |          5.00
  Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |        10.00 |          5.00
 ```
+
+### Esercizio 7
+
+> _Nell’entità Museo aggiornare il prezzo aggiungendo 1 Euro alle tuple esistenti._
+
+1) modifico la colonna
+
+```sql
+UPDATE museo SET prezzo = prezzo + 1;
+```
+
+prima della modifica:
+
+```sql
+SELECT * FROM museo;
+
+     nome      | citta  |      indirizzo      | numerotelefono | giornochiusura | prezzo |    sitointernet
+---------------+--------+---------------------+----------------+----------------+--------+---------------------
+ Arena         | Verona | piazza Bra          | 0458003204     | MAR            |  20.00 |
+ CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |  15.00 |
+ Trento        | Trento | piazza Bra          | 0458003204     | MAR            |  20.00 | https://chiarani.it
+ ```
+ 
+ dopo la modifica:
+ 
+ ```sql
+ SELECT * FROM museo;
+ 
+      nome      | citta  |      indirizzo      | numerotelefono | giornochiusura | prezzo |    sitointernet
+---------------+--------+---------------------+----------------+----------------+--------+---------------------
+ Arena         | Verona | piazza Bra          | 0458003204     | MAR            |  21.00 |
+ CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |  16.00 |
+ Trento        | Trento | piazza Bra          | 0458003204     | MAR            |  21.00 | https://chiarani.it
+(3 rows)
+```
