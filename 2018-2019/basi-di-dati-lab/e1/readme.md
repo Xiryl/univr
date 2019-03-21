@@ -3,7 +3,7 @@
 - [Es1](#esercizio-1) :white_check_mark:
 - [Es2](#esercizio-2) :white_check_mark:
 - [Es3](#esercizio-3) :white_check_mark:
-- [Es4](#esercizio-4) :x:
+- [Es4](#esercizio-4) :white_check_mark:
 - [Es5](#esercizio-5) :x:
 - [Es6](#esercizio-6) :x:
 - [Es7](#esercizio-7) :x:
@@ -156,3 +156,16 @@ SELECT * FROM mostra;
  Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |   1.00
  Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona | 100.00
  ```
+
+### Esercizio 4
+
+> _Provare ad inserire nella relazione Museo tuple che violino i vincoli specificati._
+
+```sql
+INSERT INTO museo VALUES ('Arena', 'Verona', 'piazza Bra', '0458003204', 'martedi', 20); -- err giorno
+    -- cause: ERROR:  value too long for type character(3)
+INSERT INTO museo VALUES ('Arena', 'Verona', 'piazza Bra', '+39', 'MAR', 20); -- err tel
+    -- cause: ERROR:  new row for relation "museo" violates check constraint "museo_numerotelefono_check"
+INSERT INTO museo VALUES ('Arena', 'Verona', 'piazza Bra', '0458003204', 'MAR', 20); -- err duplicated key
+    -- cause: ERROR:  duplicate key value violates unique constraint "museo_pkey"
+```
