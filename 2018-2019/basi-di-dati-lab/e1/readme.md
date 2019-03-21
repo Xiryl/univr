@@ -4,7 +4,7 @@
 - [Es2](#esercizio-2) :white_check_mark:
 - [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :white_check_mark:
-- [Es5](#esercizio-5) :x:
+- [Es5](#esercizio-5) :white_check_mark:
 - [Es6](#esercizio-6) :x:
 - [Es7](#esercizio-7) :x:
 - [Es8](#esercizio-8) :x:
@@ -169,3 +169,53 @@ INSERT INTO museo VALUES ('Arena', 'Verona', 'piazza Bra', '+39', 'MAR', 20); --
 INSERT INTO museo VALUES ('Arena', 'Verona', 'piazza Bra', '0458003204', 'MAR', 20); -- err duplicated key
     -- cause: ERROR:  duplicate key value violates unique constraint "museo_pkey"
 ```
+
+### Esercizio 5
+
+1) update table
+```sql
+ALTER TABLE museo ADD COLUMN sitoInternet VARCHAR(40) CHECK( sitoInternet SIMILAR TO '(http[s]?):\/\/[www]?[a-zA-Z]*\.([a-z]{2,4})');
+-- ATTENZIONE: regex errata
+```
+
+prima della modifica
+```sql
+     Column     |         Type          | Collation | Nullable |           Default
+----------------+-----------------------+-----------+----------+-----------------------------
+ nome           | character varying(30) |           | not null |
+ citta          | character varying(20) |           | not null | 'Verona'::character varying
+ indirizzo      | character varying(50) |           | not null |
+ numerotelefono | character varying(15) |           | not null |
+ giornochiusura | nomigiornisettimana   |           | not null |
+ prezzo         | numeric               |           | not null |
+```
+
+dopo della modifica
+```sql
+     Column     |         Type          | Collation | Nullable |           Default
+----------------+-----------------------+-----------+----------+-----------------------------
+ nome           | character varying(30) |           | not null |
+ citta          | character varying(20) |           | not null | 'Verona'::character varying
+ indirizzo      | character varying(50) |           | not null |
+ numerotelefono | character varying(15) |           | not null |
+ giornochiusura | nomigiornisettimana   |           | not null |
+ prezzo         | numeric               |           | not null |
+ sitointernet   | character varying(40) |           |          |
+ ```
+ 
+ 2) inserisco riga
+ 
+ ```sql
+ INSERT INTO museo VALUES ('Trento', 'Trento', 'piazza Bra', '0458003204', 'MAR', 20, 'https://chiarani.it');
+ ```
+ 
+ ```sql
+ SELECT * FROM museo;
+ 
+      nome      | citta  |      indirizzo      | numerotelefono | giornochiusura | prezzo |    sitointernet
+---------------+--------+---------------------+----------------+----------------+--------+---------------------
+ Arena         | Verona | piazza Bra          | 0458003204     | MAR            |     20 |
+ CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |     15 |
+ Arena         | Arco   | piazza Bra          | 0458003204     | MAR            |     20 |
+ Trento        | Trento | piazza Bra          | 0458003204     | MAR            |     20 | https://chiarani.it
+ ```
