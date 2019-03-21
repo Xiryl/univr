@@ -269,7 +269,7 @@ UPDATE mostra SET prezzointero=10 WHERE titolo='Gli antichi';
 ALTER TABLE mostra ADD CONSTRAINT prezzoRidotto CHECK(prezzoRidotto < prezzoIntero);
 ```
 
-mostra diventa quindi:
+la tabella `mostra` diventa quindi:
 
 ```sql
     Column     |         Type          | Collation | Nullable | Default
@@ -290,4 +290,13 @@ Check constraints:
     "prezzoridotto" CHECK (prezzoridotto < prezzointero)
 Foreign-key constraints:
     "mostra_museo_fkey" FOREIGN KEY (museo, citta) REFERENCES museo(nome, citta)
+    
+    
+SELECT * FROM mostra;
+
+   titolo    |   inizio   |    fine    |     museo     | citta  | prezzointero | prezzoridotto
+-------------+------------+------------+---------------+--------+--------------+---------------
+ I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |        18.90 |          5.00
+ Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona |       100.00 |          5.00
+ Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |        10.00 |          5.00
 ```
