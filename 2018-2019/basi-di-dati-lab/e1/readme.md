@@ -30,18 +30,20 @@ CREATE TABLE museo (
     numeroTelefono VARCHAR(15) NOT NULL
         CHECK( numeroTelefono SIMILAR TO '(\+[0-9]{2,4})*([0-9]{4,10})'),      
     giornoChiusura nomiGiorniSettimana NOT NULL,
-    prezzo NUMERIC NOT NULL
+    prezzo NUMERIC(5,2) NOT NULL
         CHECK( prezzo >= 0),                                                                                        
     PRIMARY KEY(nome, citta)
 );
 
 CREATE TABLE mostra (
     titolo VARCHAR(30),
-    inizio DATE,
-    fine DATE NOT NULL,
+    inizio DATE NOT NULL
+        CHECK( inizio > '1970-01-01' ),
+    fine DATE NOT NULL
+        CHECK( fine > inizio AND fine > '1970-01-01' ),
     museo VARCHAR(30),
     citta VARCHAR(20),
-    prezzo NUMERIC NOT NULL
+    prezzo NUMERIC(5,2) NOT NULL
         CHECK( prezzo >= 0),                                                   
     FOREIGN KEY (museo, citta)                                               
         REFERENCES museo(nome, citta),
@@ -74,3 +76,14 @@ CREATE TABLE orario (
         REFERENCES museo(nome, citta)
 );
 ```
+
+### Esercizio 2
+
+> _Inserire nell’entità **Museo** le seguenti tuple:_
+
+`(Arena, Verona, piazza Bra, 045 8003204, martedì, 20), 
+(CastelVecchio, Verona, Corso Castelvecchio, 045 594734, lunedì, 15);`
+
+Soluzione:
+
+1) creo le insert
