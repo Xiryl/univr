@@ -139,3 +139,20 @@ SELECT * FROM opera;
  ```
 
 2) popolo `mostra`
+```sql
+INSERT INTO mostra (titolo, inizio, fine, museo, citta, prezzo)
+    VALUES ('I Picassi', '2019-03-21', '2019-04-21', 'Arena', 'Verona', 18.90),
+            ('Gli antichi', '2019-05-01', '2019-05-02', 'CastelVecchio', 'Verona', 1),
+            ('Ultrasuoni', '2020-01-01', '2020-01-20', 'Arena', 'Verona', 100);
+```
+
+2-a) verifico
+```sql
+SELECT * FROM mostra;
+
+   titolo    |   inizio   |    fine    |     museo     | citta  | prezzo
+-------------+------------+------------+---------------+--------+--------
+ I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |  18.90
+ Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |   1.00
+ Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona | 100.00
+ ```
