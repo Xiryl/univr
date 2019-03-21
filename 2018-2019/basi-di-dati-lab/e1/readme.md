@@ -219,3 +219,75 @@ dopo della modifica
  Arena         | Arco   | piazza Bra          | 0458003204     | MAR            |     20 |
  Trento        | Trento | piazza Bra          | 0458003204     | MAR            |     20 | https://chiarani.it
  ```
+
+### Esercizio 5
+
+> _Nell’entità Mostra modificare l’attributo prezzo in prezzoIntero ed aggiungere l’attributo prezzoRidotto con valore di default 5. Aggiungere il vincolo (di tabella o di attributo?) che garantisca che Mostra.prezzoRidotto sia minore di Mostra.prezzoIntero._
+
+1) modifico prezzo
+
+```sql
+ALTER TABLE mostra RENAME COLUMN prezzo TO prezzoIntero;
+```
+quindi `mostra` diventa:
+
+```sql
+    Column    |         Type          | Collation | Nullable | Default
+--------------+-----------------------+-----------+----------+---------
+ titolo       | character varying(30) |           | not null |
+ inizio       | date                  |           | not null |
+ fine         | date                  |           | not null |
+ museo        | character varying(30) |           |          |
+ citta        | character varying(20) |           |          |
+ prezzointero | numeric(5,2)          |           | not null |
+```
+
+2) aggiungo prezzo ridotto
+
+```sql
+ALTER TABLE mostra ADD COLUMN prezzoRidotto NUMERIC(5,2) NOT NULL DEFAULT(5);
+```
+
+quindi `mostra` diventa:
+
+```sql
+    Column     |         Type          | Collation | Nullable | Default
+---------------+-----------------------+-----------+----------+---------
+ titolo        | character varying(30) |           | not null |
+ inizio        | date                  |           | not null |
+ fine          | date                  |           | not null |
+ museo         | character varying(30) |           |          |
+ citta         | character varying(20) |           |          |
+ prezzointero  | numeric(5,2)          |           | not null |
+ prezzoridotto | numeric(5,2)          |           | not null | 5
+```
+
+3) aggiungo il vincolo di tabella
+
+```sql
+UPDATE mostra SET prezzointero=10 WHERE titolo='Gli antichi';
+ALTER TABLE mostra ADD CONSTRAINT prezzoRidotto CHECK(prezzoRidotto < prezzoIntero);
+```
+
+mostra diventa quindi:
+
+```sql
+    Column     |         Type          | Collation | Nullable | Default
+---------------+-----------------------+-----------+----------+---------
+ titolo        | character varying(30) |           | not null |
+ inizio        | date                  |           | not null |
+ fine          | date                  |           | not null |
+ museo         | character varying(30) |           |          |
+ citta         | character varying(20) |           |          |
+ prezzointero  | numeric(5,2)          |           | not null |
+ prezzoridotto | numeric(5,2)          |           | not null | 5
+Indexes:
+    "mostra_pkey" PRIMARY KEY, btree (titolo, inizio)
+Check constraints:
+    "mostra_check" CHECK (fine > inizio AND fine > '1970-01-01'::date)
+    "mostra_inizio_check" CHECK (inizio > '1970-01-01'::date)
+    "mostra_prezzo_check" CHECK (prezzointero >= 0::numeric)
+    "prezzoridotto" CHECK (prezzoridotto < prezzointero)
+Foreign-key constraints:
+    "mostra_museo_fkey" FOREIGN KEY (museo, citta) REFERENCES museo(nome, citta)
+```
