@@ -1,5 +1,8 @@
 # Esercitazione 1
 
+- [Es1](#esercizio-1) :white_check_mark:
+- [Es2](#esercizio-2) :white_check_mark:
+
 ### Esercizio 1
 
 > _Scrivere il codice PostgreSQL che generi tutte le tabelle. Per gli attributi di cui non è stato specificato il tipo, scegliere quello opportuno. Specificare tutti i vincoli possibili, sia intra- sia inter-relazionali._
