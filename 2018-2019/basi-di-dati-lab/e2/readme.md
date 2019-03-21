@@ -1,4 +1,4 @@
-# Esercitazione 1
+# Esercitazione 2
 
 - [Es1](#esercizio-1) :x:
 - [Es2](#esercizio-2) :x:
