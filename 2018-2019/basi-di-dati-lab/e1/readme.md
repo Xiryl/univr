@@ -5,8 +5,8 @@
 - [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :white_check_mark:
 - [Es5](#esercizio-5) :white_check_mark:
-- [Es6](#esercizio-6) :x:
-- [Es7](#esercizio-7) :x:
+- [Es6](#esercizio-6) :white_check_mark:
+- [Es7](#esercizio-7) :white_check_mark:
 - [Es8](#esercizio-8) :x:
 
 ### Esercizio 1
