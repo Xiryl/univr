@@ -290,8 +290,9 @@ Check constraints:
     "prezzoridotto" CHECK (prezzoridotto < prezzointero)
 Foreign-key constraints:
     "mostra_museo_fkey" FOREIGN KEY (museo, citta) REFERENCES museo(nome, citta)
-    
-    
+```
+
+```sql    
 SELECT * FROM mostra;
 
    titolo    |   inizio   |    fine    |     museo     | citta  | prezzointero | prezzoridotto
