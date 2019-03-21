@@ -4,6 +4,8 @@ A collection of files made @ [University of Verona](http://www.di.univr.it)
 #### walkthrough
 Each folder of the repo corresponds to an argument. You can find these topics:
 
+- `Database`
+  - SQL
 - `Network Security`
   - Java Socket
   - CISCO
