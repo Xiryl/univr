@@ -7,7 +7,7 @@
 - [Es5](#esercizio-5) :white_check_mark:
 - [Es6](#esercizio-6) :white_check_mark:
 - [Es7](#esercizio-7) :white_check_mark:
-- [Es8](#esercizio-8) :x:
+- [Es8](#esercizio-8) :white_check_mark:
 
 ### Esercizio 1
 
@@ -111,6 +111,7 @@ SELECT * FROM museo;
 ---------------+--------+---------------------+----------------+----------------+--------
  Arena         | Verona | piazza Bra          | 0458003204     | MAR            |     20
  CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |     15
+ (2 rows)
 ```
 
 ### Esercizio 3
@@ -136,6 +137,7 @@ SELECT * FROM opera;
  La Guernica                | Picasso       | Pablo      | Arena         | Verona | medioevo | 1937
  Urlo                       | Munch         | Edward     | Arena         | Verona | medioevo | 1983
  Graffiti, pietra su grotta | Homo          | Sapiens    | CastelVecchio | Verona | pietra   | 1200
+ (3 rows)
  ```
 
 2) popolo `mostra`
@@ -155,6 +157,7 @@ SELECT * FROM mostra;
  I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |  18.90
  Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |   1.00
  Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona | 100.00
+ (3 rows)
  ```
 
 ### Esercizio 4
@@ -218,6 +221,7 @@ dopo della modifica
  CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |     15 |
  Arena         | Arco   | piazza Bra          | 0458003204     | MAR            |     20 |
  Trento        | Trento | piazza Bra          | 0458003204     | MAR            |     20 | https://chiarani.it
+ (4 rows)
  ```
 
 ### Esercizio 5
@@ -300,6 +304,7 @@ SELECT * FROM mostra;
  I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |        18.90 |          5.00
  Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona |       100.00 |          5.00
  Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |        10.00 |          5.00
+ (3 rows)
 ```
 
 ### Esercizio 7
@@ -322,6 +327,7 @@ SELECT * FROM museo;
  Arena         | Verona | piazza Bra          | 0458003204     | MAR            |  20.00 |
  CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |  15.00 |
  Trento        | Trento | piazza Bra          | 0458003204     | MAR            |  20.00 | https://chiarani.it
+ (3 rows)
  ```
  
  dopo la modifica:
@@ -334,5 +340,41 @@ SELECT * FROM museo;
  Arena         | Verona | piazza Bra          | 0458003204     | MAR            |  21.00 |
  CastelVecchio | Verona | Corso Castelvecchio | 045594734      | LUN            |  16.00 |
  Trento        | Trento | piazza Bra          | 0458003204     | MAR            |  21.00 | https://chiarani.it
+(3 rows)
+```
+
+### Esercizio 8
+
+> _Nell’entità Mostra aggiornare il prezzoRidotto aumentandolo di 1 Euro per quelle mostre che hanno prezzoIntero inferiore a 15 Euro._
+
+1) eseguo l'update
+
+```sql
+UPDATE mostra SET prezzoRidotto = prezzoRidotto + 1 WHERE prezzoIntero <= 15;
+```
+
+quindi la tabella `mostra` varia da così:
+
+```sql
+SELECT * FROM mostra;
+
+   titolo    |   inizio   |    fine    |     museo     | citta  | prezzointero | prezzoridotto
+-------------+------------+------------+---------------+--------+--------------+---------------
+ I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |        18.90 |          5.00
+ Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona |       100.00 |          5.00
+ Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |        10.00 |          5.00
+ (3 rows)
+```
+
+a così:
+
+```sql
+SELECT * FROM mostra;
+
+   titolo    |   inizio   |    fine    |     museo     | citta  | prezzointero | prezzoridotto
+-------------+------------+------------+---------------+--------+--------------+---------------
+ I Picassi   | 2019-03-21 | 2019-04-21 | Arena         | Verona |        18.90 |          5.00
+ Ultrasuoni  | 2020-01-01 | 2020-01-20 | Arena         | Verona |       100.00 |          5.00
+ Gli antichi | 2019-05-01 | 2019-05-02 | CastelVecchio | Verona |        10.00 |          6.00
 (3 rows)
 ```
