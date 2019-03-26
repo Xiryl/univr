@@ -62,3 +62,19 @@ ottengo quindi:
 ```
 
 
+### Esercuzio 3
+
+> _Trovare per ogni corso di studi che ha erogato insegnamenti nel 10/11 il suo nome e il nome delle facolta che lo gestiscono. (senza usare inserogato e facolta). Porre i risultati in ordine di nome e corso studi_
+
+1) eseguo la query
+
+```sql
+SELECT DISTINCT corsostudi.nome, facolta.nome 
+FROM corsostudi JOIN inserogato i on corsostudi.id = i.id_corsostudi 
+    JOIN corsoinfacolta on corsostudi.id = corsoinfacolta.id_corsostudi
+    JOIN facolta ON corsoinfacolta.id_facolta = facolta.id 
+WHERE annoaccademico= '2010/2011' 
+ORDER BY corsostudi.nome;
+```
+
+_Ottengo 211 righe._
