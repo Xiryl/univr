@@ -17,7 +17,7 @@
 - [Es15](#esercizio-15) :x:
 
 ### Esercizio 1
-> `Visualizzare il numero di corsi di studi`
+> _Visualizzare il numero di corsi di studi_
 
 1) eseguo la query
 
@@ -37,7 +37,7 @@ ottengo quindi:
 
 ### Esercizio 2
 
-> `Visualizzare nome, codice, ind id del preside di tutte le facolta`
+> _Visualizzare nome, codice, ind id del preside di tutte le facolta_
 
 1) eseguo la query
 
