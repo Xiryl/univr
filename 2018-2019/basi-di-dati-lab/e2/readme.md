@@ -1,8 +1,8 @@
 # Esercitazione 2
 
-- [Es1](#esercizio-1) :x:
-- [Es2](#esercizio-2) :x:
-- [Es3](#esercizio-3) :x:
+- [Es1](#esercizio-1) :white_check_mark:
+- [Es2](#esercizio-2) :white_check_mark:
+- [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :x:
 - [Es5](#esercizio-5) :x:
 - [Es6](#esercizio-6) :x:
