@@ -3,7 +3,7 @@
 - [Es1](#esercizio-1) :white_check_mark:
 - [Es2](#esercizio-2) :white_check_mark:
 - [Es3](#esercizio-3) :white_check_mark:
-- [Es4](#esercizio-4) :x:
+- [Es4](#esercizio-4) :white_check_mark:
 - [Es5](#esercizio-5) :x:
 - [Es6](#esercizio-6) :x:
 - [Es7](#esercizio-7) :x:
@@ -62,7 +62,7 @@ ottengo quindi:
 ```
 
 
-### Esercuzio 3
+### Esercizio 3
 
 > _Trovare per ogni corso di studi che ha erogato insegnamenti nel 10/11 il suo nome e il nome delle facolta che lo gestiscono. (senza usare inserogato e facolta). Porre i risultati in ordine di nome e corso studi_
 
@@ -78,3 +78,16 @@ ORDER BY corsostudi.nome;
 ```
 
 _Ottengo 211 righe._
+
+### Esercizio 4
+
+> _visualizzare nome, codice e abbreviazione di tutti i corsi di studio gestiti dalal facolta medicina e chirurgia_
+
+```sql
+SELECT facolta.nome, facolta.codice, corsostudi.abbreviazione
+FROM facolta JOIN corsoinfacolta ON facolta.id = corsoinfacolta.id_facolta
+    JOIN corsostudi ON corsoinfacolta.id_corsostudi = corsostudi.id
+WHERE LOWER(facolta.nome) = 'medicina e chirurgia';
+```
+
+_Ottengo 236 righe._
