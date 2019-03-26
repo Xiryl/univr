@@ -16,3 +16,49 @@
 - [Es14](#esercizio-14) :x:
 - [Es15](#esercizio-15) :x:
 
+### Esercizio 1
+> `Visualizzare il numero di corsi di studi`
+
+1) eseguo la query
+
+```sql
+SELECT COUNT(*) FROM corsostudi;
+```
+
+ottengo quindi:
+
+```sql
+ count
+-------
+   635
+(1 row)
+```
+
+
+### Esercizio 2
+
+> `Visualizzare nome, codice, ind id del preside di tutte le facolta`
+
+1) eseguo la query
+
+```sql
+SELECT nome, codice, indirizzo, id_preside_persona FROM facolta;
+```
+
+ottengo quindi:
+
+```sql
+                  nome                  | codice |                   indirizzo                   | id_preside_persona
+----------------------------------------+--------+-----------------------------------------------+--------------------
+ Scienze della formazione               | W      | Lungadige Porta Vittoria 17 - 37129 Verona VR |                461
+ Economia                               | C      | Lungadige Porta Vittoria, 41 - 37129 VERONA   |                297
+ Lettere e filosofia                    | N      | via San Francesco 22 37129 Verona             |                734
+ Scienze matematiche fisiche e naturali | S      | strada le Grazie 15 I-37134 Verona Italy      |                 87
+ Lingue e letterature straniere         | L      | Via San Francesco 22 37129 Verona             |                880
+ Giurisprudenza                         | G      | via C. Montanari, n.9 - 37100 Verona Italia   |                567
+ Medicina e Chirurgia                   | M      | P.le Scuro, 10 37134 Verona                   |               1331
+ Scienze motorie                        | 7      | Via Casorati, 43 37131 Verona                 |               1069
+(8 rows)
+```
+
+
