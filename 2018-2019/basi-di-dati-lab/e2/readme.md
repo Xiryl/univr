@@ -4,12 +4,12 @@
 - [Es2](#esercizio-2) :white_check_mark:
 - [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :white_check_mark:
-- [Es5](#esercizio-5) :x:
-- [Es6](#esercizio-6) :x:
-- [Es7](#esercizio-7) :x:
-- [Es8](#esercizio-8) :x:
-- [Es9](#esercizio-9) :x:
-- [Es10](#esercizio-10) :x:
+- [Es5](#esercizio-5) :white_check_mark:
+- [Es6](#esercizio-6) :white_check_mark:
+- [Es7](#esercizio-7) :white_check_mark:
+- [Es8](#esercizio-8) :white_check_mark:
+- [Es9](#esercizio-9) :white_check_mark:
+- [Es10](#esercizio-10) :white_check_mark:
 - [Es11](#esercizio-11) :x:
 - [Es12](#esercizio-12) :x:
 - [Es13](#esercizio-13) :x:
@@ -91,3 +91,72 @@ WHERE LOWER(facolta.nome) = 'medicina e chirurgia';
 ```
 
 _Ottengo 236 righe._
+
+### Esercizio 5
+
+```sql
+SELECT CS.codice, CS.nome, CS.abbreviazione
+FROM CorsoStudi as CS
+WHERE CS.nome ILIKE '%lingue%';
+```
+
+_Ottengo 16 righe._
+
+
+### Esercizio 6
+
+```sql
+SELECT DISTINCT CS.sede
+FROM CorsoStudi as CS;
+```
+
+_Ottengo 48 righe._
+
+### Esercizio 7 
+
+```sql
+SELECT DISTINCT I.nomeins, D.nome, F.nome, INS.modulo, INS.nomemodulo, F.nome
+FROM facolta AS F JOIN corsoinfacolta CSF ON F.id = CSF.id_facolta
+    JOIN corsostudi AS CS ON CSF.id_corsostudi = CS.id
+    JOIN inserogato AS INS ON INS.id_corsostudi = CS.id
+    JOIN insegn AS I ON I.id = INS.id_insegn
+    JOIN discriminante AS D ON D.id = INS.id_discriminante
+WHERE INS.annoaccademico = '2010/2011' AND LOWER(F.nome) = 'economia';
+```
+
+### Esercizio 8
+
+```sql
+SELECT DISTINCT I.nomeins, D.descrizione
+FROM insegn AS I JOIN inserogato AS INSE on I.id = INSE.id_insegn
+    JOIN discriminante D ON INSE.id_discriminante = D.id
+WHERE INSE.annoaccademico = '2009/2010'
+    AND INSE.crediti IN (3,5,12)
+    AND INSE.modulo = 0;
+```
+
+### Esercizio 9
+
+```sql
+SELECT I.id, I.nomeins, D.descrizione
+FROM insegn AS I JOIN inserogato as INSE ON I.id = INSE.id_insegn
+    JOIN discriminante AS D ON D.id = INSE.id_discriminante
+    WHERE INSE.annoaccademico = '2008/2009'
+    AND INSE.modulo = 0
+    AND INSE.crediti > 9
+    ORDER BY I.nomeins;
+```
+
+### Esercizio 10
+
+```sql
+SELECT DISTINCT I.nomeins, D.descrizione, INSE.crediti, INSE.annierogazione, INSE.modulo
+FROM insegn as I JOIN inserogato AS INSE ON I.id = INSE.id_insegn
+    JOIN discriminante AS D ON D.id = INSE.id_discriminante
+    JOIN corsostudi C ON INSE.id_corsostudi = C.id
+    WHERE C.nome = 'Laurea in Informatica'
+    AND INSE.annoaccademico = '2010/2011'
+    AND INSE.modulo = 0
+    ORDER BY I.nomeins;
+```
+
