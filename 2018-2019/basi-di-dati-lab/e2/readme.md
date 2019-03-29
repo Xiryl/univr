@@ -10,7 +10,7 @@
 - [Es8](#esercizio-8) :white_check_mark:
 - [Es9](#esercizio-9) :white_check_mark:
 - [Es10](#esercizio-10) :white_check_mark:
-- [Es11](#esercizio-11) :x:
+- [Es11](#esercizio-11) :white_check_mark:
 - [Es12](#esercizio-12) :x:
 - [Es13](#esercizio-13) :x:
 - [Es14](#esercizio-14) :x:
@@ -159,4 +159,14 @@ FROM insegn as I JOIN inserogato AS INSE ON I.id = INSE.id_insegn
     AND INSE.modulo = 0
     ORDER BY I.nomeins;
 ```
+
+### Esercizio 11
+
+```sql
+SELECT MAX(INSE.crediti)
+FROM inserogato AS INSE
+WHERE  INSE.annoaccademico = '2010/2011'
+```
+
+
 
