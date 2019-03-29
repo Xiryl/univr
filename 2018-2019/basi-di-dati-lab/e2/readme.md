@@ -91,3 +91,59 @@ WHERE LOWER(facolta.nome) = 'medicina e chirurgia';
 ```
 
 _Ottengo 236 righe._
+
+### Esercizio 5
+
+```sql
+SELECT CS.codice, CS.nome, CS.abbreviazione
+FROM CorsoStudi as CS
+WHERE CS.nome ILIKE '%lingue%';
+```
+
+_Ottengo 16 righe._
+
+
+### Esercizio 6
+
+```sql
+SELECT DISTINCT CS.sede
+FROM CorsoStudi as CS;
+```
+
+_Ottengo 48 righe._
+
+### Esercizio 7 
+
+```sql
+SELECT DISTINCT I.nomeins, D.nome, F.nome, INS.modulo, INS.nomemodulo, F.nome
+FROM facolta AS F JOIN corsoinfacolta CSF ON F.id = CSF.id_facolta
+    JOIN corsostudi AS CS ON CSF.id_corsostudi = CS.id
+    JOIN inserogato AS INS ON INS.id_corsostudi = CS.id
+    JOIN insegn AS I ON I.id = INS.id_insegn
+    JOIN discriminante AS D ON D.id = INS.id_discriminante
+WHERE INS.annoaccademico = '2010/2011' AND LOWER(F.nome) = 'economia';
+```
+
+### Esercizio 8
+
+```sql
+SELECT DISTINCT I.nomeins, D.descrizione
+FROM insegn AS I JOIN inserogato AS INSE on I.id = INSE.id_insegn
+    JOIN discriminante D ON INSE.id_discriminante = D.id
+WHERE INSE.annoaccademico = '2009/2010'
+    AND INSE.crediti IN (3,5,12)
+    AND INSE.modulo = 0;
+```
+
+### Esercizio 9
+
+```sql
+SELECT I.id, I.nomeins, D.descrizione
+FROM insegn AS I JOIN inserogato as INSE ON I.id = INSE.id_insegn
+    JOIN discriminante AS D ON D.id = INSE.id_discriminante
+    WHERE INSE.annoaccademico = '2008/2009'
+    AND INSE.modulo = 0
+    AND INSE.crediti > 9
+    ORDER BY I.nomeins;
+```
+
