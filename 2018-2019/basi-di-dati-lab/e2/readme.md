@@ -11,8 +11,8 @@
 - [Es9](#esercizio-9) :white_check_mark:
 - [Es10](#esercizio-10) :white_check_mark:
 - [Es11](#esercizio-11) :white_check_mark:
-- [Es12](#esercizio-12) :x:
-- [Es13](#esercizio-13) :x:
+- [Es12](#esercizio-12) :white_check_mark:
+- [Es13](#esercizio-13) :white_check_mark:
 - [Es14](#esercizio-14) :x:
 - [Es15](#esercizio-15) :x:
 
@@ -165,8 +165,23 @@ FROM insegn as I JOIN inserogato AS INSE ON I.id = INSE.id_insegn
 ```sql
 SELECT MAX(INSE.crediti)
 FROM inserogato AS INSE
-WHERE  INSE.annoaccademico = '2010/2011'
+WHERE  INSE.annoaccademico = '2010/2011';
 ```
 
+### Esercizio 12
 
+```sql
+SELECT MAX(I.crediti) AS "Massimo Crediti", MIN(I.CREDITI) AS "Minimo Crediti"
+FROM inserogato AS I
+GROUP BY(I.annoaccademico);
+```
+
+### Esercizio 13
+
+```sql
+SELECT INSE.annoaccademico AS "Anno ACC", CS.nome AS "Corso", SUM(INSE.Crediti) AS "TOT Crediti", MIN(INSE.Crediti) AS "MIN Crediti", MAX(INSE.Crediti) AS "MAX Crediti"
+FROM inserogato AS INSE
+    JOIN corsostudi AS CS ON INSE.id_corsostudi = CS.id
+GROUP BY(INSE.annoaccademico, CS.nome);
+```
 
