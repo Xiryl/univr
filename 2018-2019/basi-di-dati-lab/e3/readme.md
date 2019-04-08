@@ -54,3 +54,17 @@ WHERE
 ORDER BY P.id
 LIMIT 5 OFFSET 19;
 ```
+
+
+```sql
+SELECT  PL.abbreviazione, PD.discriminante, PD.inizio, PD.fine, COUNT(*)
+FROM periodolez     AS PL
+  JOIN periododid   AS PD   ON PL.id = PD.id
+  JOIN insinperiodo i ON PL.id = i.id_periodolez
+  join inserogato i2 ON i.id_inserogato = i2.id
+WHERE (PD.descrizione LIKE 'I semestre%' or
+      pd.descrizione LIKE 'Primo semestre%')
+  and pd.annoaccademico = '2010/2011'
+GROUP BY (PL.abbreviazione, PD.discriminante, PD.inizio, PD.fine)
+ORDER BY PD.inizio, PD.fine
+```
