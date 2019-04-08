@@ -4,16 +4,16 @@
 - [Es2](#esercizio-2) :white_check_mark:
 - [Es3](#esercizio-3) :white_check_mark:
 - [Es4](#esercizio-4) :white_check_mark:
-- [Es5](#esercizio-5) :x:
-- [Es6](#esercizio-6) :x:
-- [Es7](#esercizio-7) :x:
-- [Es8](#esercizio-8) :x:
-- [Es9](#esercizio-9) :x:
-- [Es10](#esercizio-10) :x:
-- [Es11](#esercizio-11) :x:
-- [Es12](#esercizio-12) :x:
-- [Es13](#esercizio-13) :x:
-- [Es14](#esercizio-14) :x:
+- [Es5](#esercizio-5) :white_check_mark:
+- [Es6](#esercizio-6) :white_check_mark:
+- [Es7](#esercizio-7) :white_check_mark:
+- [Es8](#esercizio-8) :white_check_mark:
+- [Es9](#esercizio-9) :white_check_mark:
+- [Es10](#esercizio-10) :white_check_mark:
+- [Es11](#esercizio-11) :white_check_mark:
+- [Es12](#esercizio-12) :white_check_mark:
+- [Es13](#esercizio-13) :white_check_mark:
+- [Es14](#esercizio-14) :white_check_mark:
 - [Es15](#esercizio-15) :x:
 
 ### Esercizio 1
@@ -145,5 +145,57 @@ FROM insegn AS I JOIN inserogato as INSE ON I.id = INSE.id_insegn
     AND INSE.modulo = 0
     AND INSE.crediti > 9
     ORDER BY I.nomeins;
+```
+
+### Esercizio 10
+
+```sql
+SELECT DISTINCT I.nomeins, D.descrizione, INSE.crediti, INSE.annierogazione, INSE.modulo
+FROM insegn as I JOIN inserogato AS INSE ON I.id = INSE.id_insegn
+    JOIN discriminante AS D ON D.id = INSE.id_discriminante
+    JOIN corsostudi C ON INSE.id_corsostudi = C.id
+    WHERE C.nome = 'Laurea in Informatica'
+    AND INSE.annoaccademico = '2010/2011'
+    AND INSE.modulo = 0
+    ORDER BY I.nomeins;
+```
+
+### Esercizio 11
+
+```sql
+SELECT MAX(INSE.crediti)
+FROM inserogato AS INSE
+WHERE  INSE.annoaccademico = '2010/2011';
+```
+
+### Esercizio 12
+
+```sql
+SELECT MAX(I.crediti) AS "Massimo Crediti", MIN(I.CREDITI) AS "Minimo Crediti"
+FROM inserogato AS I
+GROUP BY(I.annoaccademico);
+```
+
+### Esercizio 13
+
+```sql
+SELECT INSE.annoaccademico AS "Anno ACC", CS.nome AS "Corso", SUM(INSE.Crediti) AS "TOT Crediti", MIN(INSE.Crediti) AS "MIN Crediti", MAX(INSE.Crediti) AS "MAX Crediti"
+FROM inserogato AS INSE
+    JOIN corsostudi AS CS ON INSE.id_corsostudi = CS.id
+GROUP BY(INSE.annoaccademico, CS.nome);
+```
+### Esercizio 14
+
+```sql
+SELECT CS.nome AS "Corso Studi", COUNT(I.nomeins) AS "n° insegnamenti"
+FROM insegn as I
+    JOIN inserogato AS INSE ON INSE.id_insegn = I.id
+    JOIN corsostudi AS CS ON CS.id = INSE.id_corsostudi
+    JOIN corsoinfacolta AS CIF ON CIF.id_corsostudi = CS.id
+    JOIN facolta AS F ON F.id = CIF.id_facolta
+WHERE INSE.annoaccademico = '2009/2010'
+  AND F.nome = 'Scienze matematiche fisiche e naturali'
+  AND INSE.hamoduli = '0'
+GROUP BY(cs.nome);
 ```
 
