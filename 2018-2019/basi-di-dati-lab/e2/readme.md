@@ -13,7 +13,11 @@
 - [Es11](#esercizio-11) :white_check_mark:
 - [Es12](#esercizio-12) :white_check_mark:
 - [Es13](#esercizio-13) :white_check_mark:
+<<<<<<< HEAD
 - [Es14](#esercizio-14) :white_check_mark:
+=======
+- [Es14](#esercizio-14) :x:
+>>>>>>> 59ba595744b39db03c873028c18d22c634b63e5c
 - [Es15](#esercizio-15) :x:
 
 ### Esercizio 1
@@ -184,6 +188,7 @@ FROM inserogato AS INSE
     JOIN corsostudi AS CS ON INSE.id_corsostudi = CS.id
 GROUP BY(INSE.annoaccademico, CS.nome);
 ```
+<<<<<<< HEAD
 ### Esercizio 14
 
 ```sql
@@ -198,4 +203,6 @@ WHERE INSE.annoaccademico = '2009/2010'
   AND INSE.hamoduli = '0'
 GROUP BY(cs.nome);
 ```
+=======
+>>>>>>> 59ba595744b39db03c873028c18d22c634b63e5c
 
