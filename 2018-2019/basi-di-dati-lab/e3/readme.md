@@ -3,8 +3,8 @@
 - [Es1](#esercizio-1) :white_check_mark:
 - [Es2](#esercizio-2) :x:
 - [Es3](#esercizio-3) :white_check_mark:
-- [Es4](#esercizio-4) :x:
-- [Es5](#esercizio-5) :x:
+- [Es4](#esercizio-4) :white_check_mark:
+- [Es5](#esercizio-5) :white_check_mark:
 - [Es6](#esercizio-6) :x:
 - [Es7](#esercizio-7) :x:
 - [Es8](#esercizio-8) :x:
@@ -55,6 +55,7 @@ ORDER BY P.id
 LIMIT 5 OFFSET 19;
 ```
 
+### Esercizio 4
 
 ```sql
 SELECT  PL.abbreviazione, PD.discriminante, PD.inizio, PD.fine, COUNT(*)
@@ -67,4 +68,15 @@ WHERE (PD.descrizione LIKE 'I semestre%' or
   and pd.annoaccademico = '2010/2011'
 GROUP BY (PL.abbreviazione, PD.discriminante, PD.inizio, PD.fine)
 ORDER BY PD.inizio, PD.fine
+```
+
+### Esercizio 5
+
+```sql
+SELECT F.nome, COUNT(INSE.ID) AS "N UNITA LOGISTICHE", SUM(INSE.crediti) AS "N CREDITI EROGATI"
+FROM facolta AS F
+  JOIN inserogato INSE ON F.id = INSE.id_facolta
+WHERE INSE.modulo < '0'
+    AND INSE.annoaccademico = '2010/2011'
+GROUP BY (F.nome)
 ```
