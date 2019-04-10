@@ -32,9 +32,6 @@ Provo a inserire un indice sulla chiave primaria della tabella
 ```sql
 CREATE INDEX id_cs_index ON corsostudi(id);
 ANALYZE corsostudi;
-
-CREATE INDEX id_cs_index ON corsostudi(nome);
-ANALYZE corsostudi;
 ```
 
 Ottenendo un indice btree:
