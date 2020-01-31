@@ -1,0 +1,594 @@
+\documentclass[]{IEEEtran}
+
+\title{Modeling and Synthesis of a Single-Precision Floating-point IEEE 754 Multiplier}
+\author{Fabio Chiarani - VR445566}
+
+\usepackage{graphicx}
+\usepackage[british]{babel}
+\usepackage{multicol}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata, positioning}
+\usepackage[latin1]{inputenc}
+
+\usepackage{forest}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		The following document shows how two parallel and equal IEEE 754 single precision floating-point multipliers have been realized through the modelling and synthesis by two HDL languages (SystemVerilog and VHDL). The goal is to use one toplevel that controls both multipliers, thus managing a hand-shake and serializing the output when is done. The synthesis produced, will be compared with a synthesis of a C floating point using the High Level Synthesis.
+	\end{abstract}
+	
+	
+	\section{Introduction}
+	
+	The project want to model a toplevel that controls two multipliers that perform multiplication according to the IEEE754 standard. The toplevel must be synthetized for an FPGA with only 125 ports (I/O) available. It is therefore necessary that the toplevel manages and serializes the inputs and outputs. 
+	
+	The toplevel is tested through a testbench, which reads inputs from a file. After that will be synthetized and its maximum clock speed will be evaluated (with other timings and area reports).
+	
+	The toplevel, written in VHDL and Verilog, it has also written in SystemC, to view how it is possible to describe and model a program in different levels of abstraction. Then, the timings report obtained will be compared with the C algorithm description of the IEEE 754 multiplication timing report retrived from the High Level Synthesis.
+	
+		The Verilog toplevel is synthetized with $444$ LUT, $395$ FF, $1$ BUFG, a minimum clock of $9ns$ and a power stimation of $0.112W$ with $26.4$ celsius degree for the junction temperature.
+	\\
+	
+	The \hyperref[sec:Background]{'Background'} section gives some information about HDL languages and the IEEE 754 standard.
+	Inside \hyperref[sec:impl]{'Implementation'} is described how the project is made: from the creation of the EFSM to the High Level Synthesis of the C algorithm. 
+	
+	Section \hyperref[sec:archvhdl]{'Architecture of VHD/Verilog RTL'} show the hardware architecture, interface and EFSM, while the section \hyperref[sec:archsystemc]{'Architecture of SystemC RTL'} show the architecture and the project structure for the SystemC modelling.
+	
+
+	After that, the \hyperref[sec:rtlsim]{'RTL Simulation'} section report the simulation phase of the Verilog and SystemC multipliers. Then the synthesis process are described inside the \hyperref[sec:rtlsim]{'Synthesis'} section, followed by the 
+	\hyperref[sec:impl]{'Implementation'} section that provides the timing and area reports. Finally, the data obtained by the C HLS is reported on the \hyperref[sec:hls]{'HLS'} section.
+	
+
+	\section{Background}
+	\label{sec:Background}
+	
+	HDL is a specialized language used to describe the structure and behavior of electronic circuits, and most commonly, digital logic circuits. It enables a formal description of an electronic circuit that allows for the automated analysis and simulation of an electronic circuit. It also allows for the synthesis of a HDL description into a netlist, which can then be placed and routed to produce the set of masks used to create an integrated circuit. ~\cite{hdlwikipedia}
+	
+	The two IEEE standard in common use are Verilog and VHDL. This two languages are common on RLT describing level. The High Level Synthesis ($HLS$)  ~\cite{hls} is another choice that can be adopted to execute the automatic translation and synthesis of an algorithmic description written in C, C++ or SystemC.
+	
+	In hardware design there are different levels of abstraction, on which different languages can operate, each with its own advantages and disadvantages. Generically, is possible to describe the system on RLT level with VHDL or Verilog, then making the synthesis to have the gate level. Another way is to make the HLS from a behavioral description by a SystemC, C or C++ description. A possible flow is shown below:
+	
+	\begin{center}
+		
+		
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+		
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		%uncomment if require: \path (0,207); %set diagram left start at 0, and has height of 207
+		
+		%Shape: Rectangle [id:dp852547878604737] 
+		\draw   (10,6) -- (149.5,6) -- (149.5,31) -- (10,31) -- cycle ;
+		%Shape: Rectangle [id:dp05901974379796271] 
+		\draw   (10,61) -- (149.5,61) -- (149.5,86) -- (10,86) -- cycle ;
+		%Shape: Rectangle [id:dp9240181080439417] 
+		\draw   (10,114) -- (149.5,114) -- (149.5,139) -- (10,139) -- cycle ;
+		%Shape: Rectangle [id:dp49188121194132917] 
+		\draw   (11,168) -- (150.5,168) -- (150.5,193) -- (11,193) -- cycle ;
+		%Straight Lines [id:da0890493002877224] 
+		\draw    (77.5,31) -- (77.5,57.97) ;
+		\draw [shift={(77.5,59.97)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		
+		%Straight Lines [id:da08058959401931964] 
+		\draw    (77.5,86) -- (77.5,112.97) ;
+		\draw [shift={(77.5,114.97)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		
+		%Straight Lines [id:da9514171477188609] 
+		\draw    (78.5,139) -- (78.5,165.97) ;
+		\draw [shift={(78.5,167.97)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		
+		
+		% Text Node
+		\draw (79.75,18.5) node   [align=left] {Behevioral};
+		% Text Node
+		\draw (79.75,73.5) node   [align=left] {RTL};
+		% Text Node
+		\draw (79.75,126.5) node   [align=left] {Gate};
+		% Text Node
+		\draw (80.75,180.5) node   [align=left] {FPGA};
+		% Text Node
+		\draw (142,47) node  [font=\scriptsize] [align=left] {High Level Synthesis};
+		% Text Node
+		\draw (117,99) node  [font=\scriptsize] [align=left] {Synthesis};
+		
+		
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	Through tools such as Vivado ~\cite{vivado}, is possible to set some constraints that must be respected (e.g. clock requency) by the design. In this way the tool shows if the design respects these constraints, proceeding with the implementation, or it is necessary to refine the system.
+	After the synthesis and implementation is possible to view the timing reports, latency and area of the generated model.
+	\\
+	
+	In IEEE 754-2008 the 32-bit base 2 format is officially referred to as binary32. It was called single in IEEE 754-1985. The IEEE 754 standard specifies a binary32 as having 1-bit sign, 8-bits for exponent and 24-bits for significand precision. The IEEE 754 provides a A full description of the IEEE754 standard can be viewed on Wikipedia ~\cite{wikiieee754}. The IEEE 754 arithmetic (used in this project) can be viewed on Wikipedia ~\cite{wikiarich754}.
+	
+	\section{Implementation}
+	\label{sec:impl}
+		After analyzing the required specifications, it was decided to design the system through an EFSM. This type of development has been useful in understanding well the system flow and the calculations that must be performed. In a second phase of review, having an EFSM, makes possible to do some improvements e.g. minimizing the number of states and/or transactions.
+	
+	After the EFSM definition, the RTL level components were developed first: the VHDL multiplier was created, tested through a minimal testbench to verify its correctness and, after that, the specular multiplier was written in Verilog.
+	
+	The toplevel and main testbench of the project is written in Verilog. It has been chosen to create a testbench that sends the same data to both modules to verify its correctness at the same time. The data is loaded from a file.
+	\\
+	
+	Then I moved to the creation of the RTL part (composed by the same components and EFSM) in SystemC. The SystemC RTL project is however written with a synthesizable grammar. The testbench, having the same EFSM as the project written in VHDL, and properly tested, was not written by inputting values from files, but only 15-20 cases were tested to verify its correctness.
+	
+	The last part of the project, the HLS, was performed from an algorithmic description of the floating point multiplication in C++.
+	The project architecture can be seen divided into two parts: the testbench (\textit{tb}) and the toplevel (\textit{tl}). The same architecture is used within the RTL description in Verilog/VHDL and SystemC.
+	The architecture will be described according to a bottom-up approach, from the internal IEEE754 component to the toplevel:
+	
+	\section{Architecture of VHD/Verilog RTL}
+	\label{sec:archvhdl}
+	This section shows the architecture and the hardware description.
+	
+	\subsection{IEEE754 Multiplier}
+	The multiplier component perform the floating point single-precision multiplication according to the IEE754 standard. The assumption is that the imputs are already normalized values, otherwise the multipler returns all $res$ signal with all zeros.
+		
+	\subsubsection{Component Interface}
+	The Figure~\ref{fig:mul_ieee_754_schema} shows the module interfaces. It have 5 inputs and 2 outputs:
+	\begin{itemize}
+		\item [-] $[op1]$ is the first number of the multiplication.
+		\item [-] $[op2]$ is the second number of the multiplication.
+		\item [-] $[inrdy] $ tell to the module when the input are ready to compute the multiplication.
+		\item [-] $[reset]$ reset the module.
+		\item [-] $[clk]$ clock signal.
+		\item [-] $[res]$ result of multiplication.
+		\item [-] $[resrdy]$ tells when the result ($res$) is ready.
+	\end{itemize}
+	
+	Inside on the VHDL module, on the architecture, there are 9 signals to handle data during the multiplication. Instead, on the Verilog module there are 9 registers. The data types are $STD\_LOGIC$, choosed for the possibility to make a better testbench simulation with the type propreties. 
+	\\
+	
+	Both VHDL and Verilog module are modeled with 2 processes: the fsm and the datapath. The fsm manages the current and the next state; the datapath calculates. The datapath is driven by the clock and the fsm by the state signal.
+	The EFSM of the multiplier is show below.
+	
+	\subsubsection{Component EFSM}
+	The multiplier EFSM showed in Figure~\ref{fig:efsm_mul} describes the multiplication algorithm.
+	Is composed of 21 states, handles infinite, zero and NaN cases and the rounding algorithm according to the IEEE754 standard.
+	
+	Short description of the sates:
+	\begin{itemize}
+		\item [-] [$s_0$] Initial and reset state.
+		\item [-] [$s_1$] The machine stays here until input data are ready.
+		\item [-] [$s_2$] Dispatch the input type.
+		\item [-] [$Inf$] Handle infinity input value.
+		\item [-] [$Zero$] Handle zero input value.
+		\item [-] [$NaN$] Handle NaN input value.
+		\item [-] [$err$] Return all zeros as output for show the invalid input error.
+		\item [-] [$s_6$] Dispatch from normalized and denormalized input (if denormalized move to err).
+		\item [-] [$s_10$] Make the multiplication.
+		\item [-] [$s_11$] Normalize the value.
+		\item [-] [$s_12$] Check for overflow or underflow.
+		\item [-] [$s_13$] Handle overflow case.
+		\item [-] [$s_14$] Handle underflow and correct case.
+		\item [-] [$norm$] Reached when got a normalized input.
+		\item [-] [$denorm$] Reached when got a denormalized input.
+		\item [-] [$s_15$] Save on result the new exponent.
+		\item [-] [$s_16$] Dispatch if need a shift.
+		\item [-] [$s_17$] Save on result the mantissa.
+		\item [-] [$s_18$] Shift operation.
+		\item [-] [$s_19$] Save on result the exponent.
+		\item [-] [$out$] Output the res value and return to the inital state.
+	\end{itemize}
+
+	\subsection{TopLevel}
+	The toplevel, written in Verilog, has the task of instantiating a VHDL and Verilog multiplier, for performing the multiplication.
+	
+	\subsubsection{Component Interface}
+	Since the FPGA has 125 ports, and the inputs are composed by 32 bit, it was not possible for the top level to accept all the 4 inputs at the same time. The toplevel interface schema is shown on Figure~\ref{fig:tl}, and the architectural choices were made as follows:
+	\begin{itemize}
+		\item [-] The toplevel accepts in input two values at a time. Inputs can be sent to all the two internal machine (Verlog and VHDL)  equally using the $inrdy$ bit with value 11. Otherwise, the inputs can be sent first to the Verilog machine and then to the VHDL machine with the $inrdy$ bit corresponding to 01 or 10. 
+		
+		By doing this, is possible to redirect inputs to the machines in a different way, decreasing the number of ports used on the FPGA.
+		\item [-] Having two multipliers, therefore two results, it was chosen to use only one output result ($res$) and to use a bit ($resrdy$) indicating if the result belongs to the first or second machine.
+		\item [-] The inputs are directly connected to the internal multipliers, controlled by the $inrdy$
+		\item [-] The outputs are controlled by the EFSM.
+	\end{itemize}
+
+	The total port used from the toplevel are 102 (85\%).
+	
+	\subsubsection{Component EFSM}
+	The toplevel EFSM showed in Figure~\ref{fig:efsm_tl} describes how it manages and serializes the outputs.
+	It Is composed of 6 states. Short description of the sates:
+	\begin{itemize}
+		\item [-] [$s_0$] Initial and reset state.
+		\item [-] [$s_1$] Dispatch the ready status.
+		\item [-] [$s_2$] Serialize on output the VHDL result.
+		\item [-] [$s_3$] Serialize on output the Verilog result.
+		\item [-] [$s_4$] Both results are ready, so store VHLD value and output the Verilog result.
+		\item [-] [$s_4$] Output the Verilog result and terminate. Returning to $s_0$ to accept a new value.
+	\end{itemize}
+
+	\subsection{Testbench}
+	The testbench is written in Verilog, because of its resemblance to the grammar of C and less verbose than VHDL.
+	The choice was to give input to both multipliers, through toplevel, the same operands ($op1$ and $op2$, with the $inrdy$ value setted to $11$). In this way the multiplier are tested that both gave the same result.
+	
+	Nothing prohibits in the future to modify the testbench in order to input different values using $inrdy $ bit  as $01$ or $10$.
+	
+	The FSMD schema is showed in Figure~\ref{fig:fsmd_tb}.
+	
+	\section{Architecture of SystemC RTL}
+	\label{sec:archsystemc}
+	This section show the architecture of the SystemC RTL description.
+	\subsection{SystemC RTL}
+	The same RTL description and architecture adopted in the VHDL/Verilog showed in Figure~\ref{fig:efsm_tl}, Figure~\ref{fig:efsm_mul}, Figure~\ref{fig:mul_ieee_754_schema} and Figure~\ref{fig:tl} was used for the SystemC RTL modelling.
+	
+	The data types are $sc\_logic$ and  $sc\_lv$ to remain consistent with the description made in VHDL/Verilog. The file are in $.cpp$ format with the $.hh$ header. The style used is to use the $SC\_CTOR$ on the header file and implement the function on the $.cpp$ file. All the code (except the testbench) is synthetizzable. 
+	
+	The multiplier  ($multiplier754\_fsmd\_sc$) is builded with two $SC\_METHOD$: the ``datapath`` and the ``fsm`` (with same EFSM of VHDL/Verilog).
+	The testbench ($tb$) is builded with two $SC\_THREAD$: ``clk\_gen`` used for generating the clock, and the ``run`` thats send the data to the toplevel ($tl$). The SystemC folder structure is showed below. 
+		\\
+	\begin{forest}
+		for tree={
+			font=\ttfamily,
+			grow'=0,
+			child anchor=west,
+			parent anchor=south,
+			anchor=west,
+			calign=first,
+			edge path={
+				\noexpand\path [draw, \forestoption{edge}]
+				(!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.05pt] {} (.child anchor)\forestoption{edge label};
+			},
+			before typesetting nodes={
+				if n=1
+				{insert before={[,phantom]}}
+				{}
+			},
+			fit=band,
+			before computing xy={l=13pt},
+		}
+		[root (SystemC)
+		[bin]
+		[build]
+		[src
+		[.cpp files]
+		]
+		[include
+		[.hh files]]
+		[bin]
+		[obj]
+		[Makefile]
+		]
+	\end{forest}
+	\section{RTL Simulation}
+	\label{sec:rtlsim}
+	\subsection{SystemC RTL Simulation}
+Before running the simulation you need the $SYSTEMC$ path variable that points to the SystemC library (change it on the $Makefile$) This project use the SystemC \verb|SystemC 2.3.2-Accellera| version. To run, on the root directory, run \verb make  and then execute it with \verb ./bin/multiplier754\_rtl.x .
+
+	An example of the simulation is:
+\\
+\\
+\noindent
+\begin{minipage}{.45\textwidth}
+	\begin{lstlisting}[,frame=tlrb]{Name}
+  $ make
+  $ ./bin/multiplier754_rtl.x
+  $ Starting tb::clk_gen()
+  $ Starting tb::run()
+  $ Out[01]: 0100000010000000000...000
+  $ Out[10]: 0100000010000000000...000
+  $ Ending tb::run().
+	\end{lstlisting}
+\end{minipage}\hfill
+
+Where in this example $op1$ and $op2$ are both setted as $01000000000000000000000000000000$ (value of $2$) on the $tb.cpp$, expecting the results of $01000000100000000000000000000000$ (hex $0x40800000$).
+
+	\subsection{VHDL/Verilog RTL Simulation}
+	The simulation was done through Vivado~\cite{vivado}. The testbench (written in Verilog) load the input data from a file ($Simulaton Sources/sim\_1/Text/input.txt$). The binary row is the input of all 4 (op1/op2 VHD and op1/op2 Verilog) multipliers ports. The hex row is the expected result.
+	
+	Running the simulation with the input file containing:
+\\
+\\
+\noindent
+\begin{minipage}{.45\textwidth}
+	\begin{lstlisting}[,frame=tlrb]{Name}
+01000000000000000000000000000000
+40800000
+	\end{lstlisting}
+\end{minipage}\hfill
+On the TLC Console (in Vivado) we can see the output of the simulation:
+\\
+\\
+\noindent
+\begin{minipage}{.45\textwidth}
+	\begin{lstlisting}[,frame=tlrb]{Name}
+expected 3f800000
+vhdl multiplier result: 3f800000
+verilog multiplier result: 3f800000
+	\end{lstlisting}
+\end{minipage}\hfill
+
+The input is a binary value on the IEEE754 format of 2.0 and the results are 4.0 coded in hex. It is possibile to view the signals of the simulation on the Figure~\ref{fig:vivado_s1}. The Figure~\ref{fig:vivado_s2} and Figure~\ref{fig:vivado_s2_detail} show the simulation of 10 different input values.
+\\
+
+From the Figure~\ref{fig:vivado_s2} it is possible to view that from the toplevel the outputs ready every $30ns$ using $15 clock$ (counting the clocks used for reset the machine). The output on the $res$ port, controlled by the $resrdy$ is shown for one clock.
+\\
+
+From the Figure~\ref{fig:vivado_s3} it is possible to view that near the marker at $9ns$, the $next\_state$ and $state$ signals shows the EFSM working, arriving at $23ns$ with the $next_state$ with value $22ns$ (end state). This means that the real multiplication requires $13ns$, with an estimation of $7cloks$.
+\\
+
+From the Figure~\ref{fig:vivado_s4} it is possible to view the signals with an input of $infinity$.
+\\
+
+The simulation is done before the synthesis, after the synthesis and after the implementation.
+
+	\section{Synthesis}
+	\label{sec:synthesis}
+
+The synthesis and implementation process it is done for the PYLNQ with code \verb|xc7z020clg400-1|.
+
+\subsection{Verilog/VHDL Multipliers Synthesis}
+	The synthesis of the $mul\_ieee754\_vhdl$ module produce the values on the Table~\ref{tab:vhd_sintesi}.
+	\begin{table}[]
+	\centering
+		\begin{tabular}{@{}llll@{}}
+			\toprule
+			Resource & Estimation & Available & Utilization \\ \midrule
+			LUT      & 224        & 53200     & 0.42\%      \\
+			FF       & 174        & 106400    & 0.16\%      \\
+			DSP      & 2          & 220       & 0.91\%      \\
+			BUFG     & 1          & 32        & 3.13\%      \\ \bottomrule
+		\end{tabular}
+	\caption{Verilog multiplier synthesis}
+	\label{tab:verilog_sintesi}
+	\end{table}
+The synthesis of the $mul\_ieee754\_verilog$ module produces the values on the Table~\ref{tab:verilog_sintesi}. 
+As we can see, the verilog module has an increment of $LUT$ and $FF$, perhaps due to the operations performed in the datapath that may not be 100\% optimized for synthesis ~\cite{sintesitut}.
+
+The Table~\ref{tab:tl_sintesi} shows the synthesis of the toplevel with an increment of all values.
+From the schematic it is possible to retrive that the toplevel (Verilog) has $174$ netlist and $356$ nets. The VHDL module has $737$ nets vs $770$ ot the Verilog, and $437$ leaf cells (VHDL) vs $468$ (Verilog).
+	\begin{table}[]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Resource & Estimation & Available & Utilization \\ \midrule
+		LUT      & 149        & 53200     & 0.28\%      \\
+		FF       & 152        & 106400    & 0.14\%      \\
+		DSP      & 2          & 220       & 0.91\%      \\
+		BUFG     & 1          & 32        & 3.13\%      \\ \bottomrule
+	\end{tabular}
+	\caption{VHDL multiplier synthesis}
+	\label{tab:vhd_sintesi}
+\end{table}
+
+\begin{table}[]
+		\centering
+\begin{tabular}{@{}llll@{}}
+	\toprule
+	Resource & Estimation & Available & Utilization \\ \midrule
+	LUT      & 444        & 53200     & 0.82\%      \\
+	FF       & 395        & 106400    & 0.37\%      \\
+	DSP      & 4          & 220       & 1.82\%      \\
+	IO       & 102        & 125       & 81.60\%     \\
+	BUFG     & 1          & 32        & 3.13\%      \\ \bottomrule
+	\end{tabular}
+	\caption{Toplevel  synthesis (post synthesis). On the post-implementation the LUT changed to 437.}
+\label{tab:tl_sintesi}
+\end{table}
+
+	\section{Implementation}
+\label{sec:impl}
+After the synthesis, through Vivado, the clock constraint has been added before running the implementation. On the initial phase, the clock is setted to $20ns$. After running the implementation several times decreasing the clock constraint, the lowest number that can work on is $9ns$.
+
+After the implementation is possible to view and analyze the $Timing$ and $Power$ reports:
+
+\subsubsection{Timing}
+The Table~\ref{tab:verilog_time} shows the Setup and Hold time. From this values, the generated bitstream is useful since the timing values are all positive and TNS and THS are 0.
+
+\begin{table}[]
+		\centering
+	\begin{tabular}{@{}llllll@{}}
+		\toprule
+		Timing & WNS     & TNS   & WHS     & THS     & Tot. Endpoints \\ \midrule
+		Setup  & 0.585ns & 0.000 & -       & -       & 818            \\
+		Hold   & -       & -     & 0.066ns & 0.000ns & 818            \\ \bottomrule
+	\end{tabular}
+	\caption{SystemC multiplier synthesis Timing}
+\label{tab:verilog_time}
+\end{table}
+
+\subsubsection{Power}
+	From the power report it is possible to view that the implementation estimation $0.112W$ as \textit{Total Power On Chip} with $26.4 C$ as \textit{junction temperature}. The power utilization is $14\%$ dynamic with $0.018W$, and $86\%$ static with $0.105W$.
+	
+	\section{HLS}
+	\label{sec:hls}
+	\subsection{SystemC HLS}
+	Changing the clock type to $sc\_in\_clk$ the SystemC multiplier is synthetized getting more LUT than the VHDL or Verilog multiplier, showed in Table~\ref{tab:systemc_sintesi}.
+	\begin{table}[]
+		\centering
+		\begin{tabular}{@{}llll@{}}
+			\toprule
+			Module & DSP48E & FF & LUT  \\ \midrule
+			datapath      & 2        & 0     & 342      \\
+			fsm       & 0        & 0    & 473      \\
+			Total      & 0          & 2       & 815      \\ \bottomrule
+		\end{tabular}
+		\caption{SystemC multiplier synthesis}
+		\label{tab:systemc_sintesi}
+	\end{table}
+	
+	\begin{table}[]
+		\centering
+		\begin{tabular}{@{}llll@{}}
+			\toprule
+			Clock & Target & Estimated & Uncertainty  \\ \midrule
+			ap\_clk      & 10       & 5.127     & 1.25      \\ \bottomrule
+		\end{tabular}
+		\caption{SystemC multiplier synthesis Timing}
+		\label{tab:systemc_sintesi_time}
+	\end{table}
+
+\subsection{C HLS}
+	The HLS is done through an algorithm description of the multiplication in C:
+\\
+\\
+\noindent
+\begin{minipage}{.45\textwidth}
+	\begin{lstlisting}[,frame=tlrb]{Name}
+void mul(
+	float op1, 
+	float op2, 
+	float * res) 
+	{
+    *res = op1 * op2;
+}
+	\end{lstlisting}
+\end{minipage}\hfill
+The synthesis produces an intresting report showed in Table~\ref{tab:hls_timing}. The FF and LUT Istance usage are the half of the toplevel synthetized.
+The 3 FF registers are 3-bit and the LUT are 4-bit.
+
+The Table~\ref{tab:hls_clk} shows how the clock estimated increment vs the Table~\ref{tab:systemc_sintesi_time} that shows the HLS of a SystemC multiplier.
+The latency of C HLS is $2$.
+		
+\begin{table}[]
+	\centering
+	\begin{tabular}{@{}lcccc@{}}
+		\toprule
+		Name        & \multicolumn{1}{l}{BRAM\_18K} & \multicolumn{1}{l}{DSP48E} & \multicolumn{1}{l}{FF} & \multicolumn{1}{l}{LUT} \\ \midrule
+		Istance     & -                             & 3                          & 128                    & 138                     \\
+		Multiplexer & -                             & -                          & -                      & 21                      \\
+		Register    & -                             & -                          & 3                      & -                       \\
+		Total       & 0                             & 3                          & 131                    & 159                     \\
+		Available   & 270                           & 240                        & 82000                  & 41000                   \\
+		Utilization (\%) & 0                           & 1                          & $\sim$0                & $\sim$0                 \\ \bottomrule
+	\end{tabular}
+	\caption{C algorithm HLS Timing}
+\label{tab:hls_timing}
+\end{table}
+
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Clock & Target & Estimated & Uncertainty  \\ \midrule
+		ap\_clk      & 10       & 8.286     & 1.25      \\ \bottomrule
+	\end{tabular}
+	\caption{C algorithm HLS Clock}
+	\label{tab:hls_clk}
+\end{table}
+
+
+	\section{Conclusion}
+	The project shows how starting from different levels of abstraction, such as RTL or behavioral, you can synthetize the program with the pros and cons of different languages. I found myself more enthusiastic about using an HDL description at RTL Verilog and VHDL level because it gives you more control over what you can achieve during the synthesis. 
+	
+	Although I did not start with the idea of making the ``fastest`` or ``smallest`` multiplier, I am satisfied with the WHS, THS, WNS and TNS values obtained. There are several parts I would have liked to go into, but the idea of having seen how to get on an FPGA from a description that can be behavioral or defined by an EFSM through a synthesis of a few lines of code like C, or a VHDL modeling is satisfactory.
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{biblio}
+
+	% Please add the following required packages to your document preamble:
+	% \usepackage{booktabs}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcl@{}}
+			\toprule
+			State  & \multicolumn{2}{c}{Operations}                                                                                                                                                                                                                                   \\ \midrule
+			S0     & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}m \textless{}= 0;\\ m1 \textless{}= 0;\\ m2 \textless{}= 0;\\ tmpm \textless{}= 0;\\ tmpexp \textless{}= 0;\\ exp \textless{}= 0;\\ s \textless{}= 0;\\ res \textless{}= 0;\\ resrdy \textless{}= 0;\end{tabular}} \\ \midrule
+			S1     & \multicolumn{2}{c}{-}                                                                                                                                                                                                                                            \\ \midrule
+			S2     & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}m1(22:0) \textless{}= op1(22:0);\\ m2(22:0) \textless{}= op2(22:0);\\ s \textless{}= op1(31) XOR op2(31);\end{tabular}}                                                                                            \\ \midrule
+			S6     & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}m1(23) \textless{}= 1;\\ m2(23) \textless{}= 1;\end{tabular}}                                                                                                                                                      \\
+			S10    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}tmpexp \textless{}= ( 0 \& op1(30:23)) + ( 0 \& op2(30:23)) - 127;\\ \midrule tmpm \textless{}= m1 * m2;\end{tabular}}                                                                                                      \\ \midrule
+			S11    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}tmpm \textless{}= '0' \& tmpm(((24) * 2) - 1 DOWNTO 1);\\  tmpm \textgreater{}\textgreater 1;\\ tmpexp \textless{}= tmpexp + 1;\end{tabular}}                                                  \\ \midrule
+			S12    & \multicolumn{2}{c}{-}                                                                                                                                                                                                                                            \\ \midrule
+			S13    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}tmpm \textless{}= '0' \& tmpm(((24) * 2) - 2 DOWNTO 0);\\ tmpm \textless{}\textless 1;\\ tmpexp \textless{}= tmpexp - 1;\end{tabular}}                                                         \\ \midrule
+			S14    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}tmpm \textless{}= '0' \& tmpm(((24) * 2) - 2 DOWNTO 0); \\ tmpm \textless{}\textless 1;\\ tmpexp \textless{}= tmpexp - 1;\end{tabular}}                                                        \\ \midrule
+			NORM   & \multicolumn{2}{c}{-}                                                                                                                                                                                                                                            \\ \midrule
+			DENORM & \multicolumn{2}{c}{exp \textless{}= 0;}                                                                                                                                                                                                                          \\ \midrule
+			S15    & \multicolumn{2}{c}{exp \textless{}= tmpexp(7:0);}                                                                                                                                                                                                                \\ \midrule
+			S16    & \multicolumn{2}{c}{-}                                                                                                                                                                                                                                            \\ \midrule
+			S17    & \multicolumn{2}{c}{m \textless{}= tmpm(45:23);}                                                                                                                                                                                                                  \\ \midrule
+			S18    & \multicolumn{2}{c}{tmpm(47:22) \textless{}= tmpm(47:22) + 1;}                                                                                                                                                                                                    \\ \midrule
+			S19    & \multicolumn{2}{c}{tmpexp \textless{}= tmpexp + 1;}                                                                                                                                                                                                              \\ \midrule
+			NAN    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}exp \textless{}= 1;\\ m \textless{}= (22 =\textgreater '1', 21 DOWNTO 0 =\textgreater 0);\\ s \textless{}= 0;\end{tabular}}                                                                                        \\ \midrule
+			INF    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}exp \textless{}= 1;\\ m \textless{}= 0;\end{tabular}}                                                                                                                                                              \\ \midrule
+			ZERO   & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}exp \textless{}= 0;\\ m \textless{}= 0;\end{tabular}}                                                                                                                                                              \\ \midrule
+			OUT    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}resrdy \textless{}= 1;\\ res(31) \textless{}= s;\\ res(30:23) \textless{}= exp;\\ res(22:0) \textless{}= m;\end{tabular}}                                                                                          \\ \midrule
+			ERR    & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}resrdy \textless{}= 1;\\ res \textless{}= 0;\end{tabular}}                                                                                                                                                         \\ \bottomrule
+		\end{tabular}
+	\caption{Operation of the EFSM multiplier }
+	\label{fig:operationefsm}
+	\end{table}
+
+		\newpage
+			\begin{figure*}[t]
+			\centering
+			\include{figures/mul_ieee754_schema}
+			\caption{Multiplier interface schema}
+			\label{fig:mul_ieee_754_schema}
+		\end{figure*}
+	
+		\newpage
+	\begin{figure*}[t]
+		\centering
+		\include{figures/efsm_mul}
+		\caption{EFSM multiplier. The state operation are described on Table~\ref{fig:operationefsm}}
+		\label{fig:efsm_mul}
+	\end{figure*}
+
+		\newpage
+\begin{figure*}[t]
+	\centering
+	\include{figures/tl}
+	\caption{Toplevel interface schema}
+	\label{fig:tl}
+\end{figure*}
+
+
+\begin{figure*}[t]
+	\centering
+	\include{figures/efsm_tl}
+	\caption{EFSM toplevel}
+	\label{fig:efsm_tl}
+\end{figure*}
+
+
+\begin{figure*}[t]
+	\centering
+	\include{figures/tb}
+	\caption{FSMD testbench}
+	\label{fig:fsmd_tb}
+\end{figure*}
+
+\begin{figure*}[tb]
+	\centering
+	\includegraphics[scale=0.40]{figures/vivados1.png}
+	\caption{Vivado Simulation Example nr.1 with one input}
+	\label{fig:vivado_s1}
+\end{figure*}
+\begin{figure*}[tb]
+	\centering
+	\includegraphics[scale=0.38]{figures/vivados2.png}
+	\caption{Vivado Simulation Example nr.2 with 10 inputs. The red arrows indicate when the $res$ is outputting the value}
+	\label{fig:vivado_s2}
+\end{figure*}
+\begin{figure*}[tb]
+	\centering
+	\includegraphics[scale=0.46]{figures/vivados2detail.png}
+	\caption{Vivado Simulation Example nr.3, Zoom at the $26,585ns$ of the simulation nr.2 }
+	\label{fig:vivado_s2_detail}
+\end{figure*}
+\begin{figure*}[tb]
+\centering
+\includegraphics[scale=0.38]{figures/vivados3.png}
+\caption{Vivado Simulation Example nr.4, Zoom inside the VHDL multiplier component }
+\label{fig:vivado_s3}
+\end{figure*}
+\begin{figure*}[tb]
+	\centering
+	\includegraphics[scale=0.38]{figures/vivados4.png}
+	\caption{Vivado Simulation Example nr.5, Zoom inside the VHDL multiplier component }
+	\label{fig:vivado_s4}
+\end{figure*}
+
+	
+	
+\end{document}

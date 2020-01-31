@@ -1,0 +1,455 @@
+Modules list:
+-------------
+routines.o:
+    CODE              Offs=000000  Size=000166  Align=00001  Fill=0000
+mmio.o:
+    CODE              Offs=000166  Size=00031B  Align=00001  Fill=0000
+main.o:
+    CODE              Offs=000481  Size=0000CC  Align=00001  Fill=0000
+custom_stdlib.o:
+    CODE              Offs=00054D  Size=00004D  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=000002  Align=00001  Fill=0000
+support.o:
+crt0.o:
+    STARTUP           Offs=000000  Size=00001D  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(add.o):
+    CODE              Offs=00059A  Size=00001C  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(addysp.o):
+    CODE              Offs=0005B6  Size=00000E  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(axlong.o):
+    CODE              Offs=0005C4  Size=00000D  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(callmain.o):
+    CODE              Offs=0005D1  Size=000017  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000004  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(condes.o):
+    CODE              Offs=0005E8  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000004  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(decsp4.o):
+    CODE              Offs=0005F4  Size=00000D  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(decsp8.o):
+    CODE              Offs=000601  Size=00000D  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(exehdr.o):
+    EXEHDR            Offs=000000  Size=000001  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(incsp1.o):
+    CODE              Offs=00060E  Size=000007  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(incsp2.o):
+    CODE              Offs=000615  Size=000016  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(incsp4.o):
+    CODE              Offs=00062B  Size=000005  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(incsp8.o):
+    CODE              Offs=000630  Size=000005  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(ladd.o):
+    CODE              Offs=000635  Size=000025  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(land.o):
+    CODE              Offs=00065A  Size=000024  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(lcmp.o):
+    CODE              Offs=00067E  Size=00003B  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(ldeaxysp.o):
+    CODE              Offs=0006B9  Size=000013  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(leq.o):
+    CODE              Offs=0006CC  Size=000006  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(lmul.o):
+    CODE              Offs=0006D2  Size=00005C  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(lpush.o):
+    CODE              Offs=00072E  Size=000021  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(makebool.o):
+    CODE              Offs=00074F  Size=00002C  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(paravirt.o):
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(popptr1.o):
+    CODE              Offs=00077B  Size=00000E  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(pusha.o):
+    CODE              Offs=000789  Size=000016  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(pushax.o):
+    CODE              Offs=00079F  Size=00001A  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(pushwsp.o):
+    CODE              Offs=0007B9  Size=00001C  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(steaxsp.o):
+    CODE              Offs=0007D5  Size=000015  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(steaxspi.o):
+    CODE              Offs=0007EA  Size=000022  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(subysp.o):
+    CODE              Offs=00080C  Size=00000D  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(zerobss.o):
+    CODE              Offs=000819  Size=000023  Align=00001  Fill=0000
+/home/parallels/Desktop/2elab/splatters/cc65//lib/sim6502.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+DATA                  000000  000028  000029  00001
+EXEHDR                000000  000000  000001  00001
+ZEROPAGE              000000  000019  00001A  00001
+BSS                   000029  00002A  000002  00001
+STARTUP               00C001  00C01D  00001D  00001
+ONCE                  00C01E  00C029  00000C  00001
+CODE                  00C02A  00C865  00083C  00001
+
+
+Exports list by name:
+---------------------
+__BSS_RUN__               000029 RLA    __BSS_SIZE__              000002 REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     00C01E RLA    
+__DESTRUCTOR_COUNT__      000000 REA    __DESTRUCTOR_TABLE__      00C866 RLA    
+__EXEHDR__                000001 REA    __MAIN_SIZE__             004000 REA    
+__MAIN_START__            00C001 REA    __MEM1_SIZE__             003C00 REA    
+__MEM1_START__            000000 REA    __STACKSIZE__             000400 REA    
+__STARTUP__               000001 REA    _get_prdata               00C432 RLA    
+_get_pready               00C1EF RLA    _io_read                  00C0A2 RLA    
+_io_write                 00C070 RLA    _main                     00C4EB RLA    
+_mulIEEE754_verilog       00C0E2 RLA    _mulIEEE754_vhdl          00C139 RLA    
+_reset_flags              00C49C RLA    _set_penable              00C1BF RLA    
+_set_psel                 00C198 RLA    _set_pwdata               00C234 RLA    
+_set_pwdata_16            00C214 RLA    _set_pwrite               00C1DF RLA    
+addysp                    00C5E1 RLA    addysp1                   00C5E0 RLA    
+axlong                    00C5EE RLA    booleq                    00C77F RLA    
+callmain                  00C5FB RLA    decsp4                    00C61E RLA    
+decsp8                    00C62B RLA    donelib                   00C612 RLA    
+exit                      00FFF1 RLA    incsp1                    00C638 RLA    
+incsp2                    00C647 RLA    incsp4                    00C655 RLA    
+incsp8                    00C65A RLA    initlib                   00C01E RLA    
+ldeax0sp                  00C6E3 RLA    ldeaxysp                  00C6E5 RLA    
+popptr1                   00C7A5 RLA    ptr1                      000008 RLZ    
+ptr3                      00000C RLZ    ptr4                      00000E RLZ    
+pusha                     00C7B7 RLA    pushax                    00C7CD RLA    
+pusheax                   00C761 RLA    pushl0                    00C758 RLA    
+pushw0sp                  00C7E3 RLA    pushwysp                  00C7E5 RLA    
+sp                        000000 RLZ    sreg                      000002 RLZ    
+steax0sp                  00C7FF RLA    steaxspidx                00C814 RLA    
+steaxysp                  00C801 RLA    subysp                    00C836 RLA    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+tosadd0ax                 00C65F RLA    tosaddax                  00C5C6 RLA    
+tosaddeax                 00C665 RLA    tosand0ax                 00C684 RLA    
+tosandeax                 00C68A RLA    toseqeax                  00C6F6 RLA    
+toslcmp                   00C6A8 RLA    tosmuleax                 00C702 RLA    
+zerobss                   00C843 RLA    
+
+
+Exports list by value:
+----------------------
+__CONSTRUCTOR_COUNT__     000000 REA    __DESTRUCTOR_COUNT__      000000 REA    
+__MEM1_START__            000000 REA    sp                        000000 RLZ    
+__EXEHDR__                000001 REA    __STARTUP__               000001 REA    
+__BSS_SIZE__              000002 REA    sreg                      000002 RLZ    
+ptr1                      000008 RLZ    ptr3                      00000C RLZ    
+ptr4                      00000E RLZ    tmp1                      000010 RLZ    
+tmp2                      000011 RLZ    tmp3                      000012 RLZ    
+tmp4                      000013 RLZ    __BSS_RUN__               000029 RLA    
+__STACKSIZE__             000400 REA    __MEM1_SIZE__             003C00 REA    
+__MAIN_SIZE__             004000 REA    __MAIN_START__            00C001 REA    
+__CONSTRUCTOR_TABLE__     00C01E RLA    initlib                   00C01E RLA    
+_io_write                 00C070 RLA    _io_read                  00C0A2 RLA    
+_mulIEEE754_verilog       00C0E2 RLA    _mulIEEE754_vhdl          00C139 RLA    
+_set_psel                 00C198 RLA    _set_penable              00C1BF RLA    
+_set_pwrite               00C1DF RLA    _get_pready               00C1EF RLA    
+_set_pwdata_16            00C214 RLA    _set_pwdata               00C234 RLA    
+_get_prdata               00C432 RLA    _reset_flags              00C49C RLA    
+_main                     00C4EB RLA    tosaddax                  00C5C6 RLA    
+addysp1                   00C5E0 RLA    addysp                    00C5E1 RLA    
+axlong                    00C5EE RLA    callmain                  00C5FB RLA    
+donelib                   00C612 RLA    decsp4                    00C61E RLA    
+decsp8                    00C62B RLA    incsp1                    00C638 RLA    
+incsp2                    00C647 RLA    incsp4                    00C655 RLA    
+incsp8                    00C65A RLA    tosadd0ax                 00C65F RLA    
+tosaddeax                 00C665 RLA    tosand0ax                 00C684 RLA    
+tosandeax                 00C68A RLA    toslcmp                   00C6A8 RLA    
+ldeax0sp                  00C6E3 RLA    ldeaxysp                  00C6E5 RLA    
+toseqeax                  00C6F6 RLA    tosmuleax                 00C702 RLA    
+pushl0                    00C758 RLA    pusheax                   00C761 RLA    
+booleq                    00C77F RLA    popptr1                   00C7A5 RLA    
+pusha                     00C7B7 RLA    pushax                    00C7CD RLA    
+pushw0sp                  00C7E3 RLA    pushwysp                  00C7E5 RLA    
+steax0sp                  00C7FF RLA    steaxysp                  00C801 RLA    
+steaxspidx                00C814 RLA    subysp                    00C836 RLA    
+zerobss                   00C843 RLA    __DESTRUCTOR_TABLE__      00C866 RLA    
+exit                      00FFF1 RLA    
+
+
+Imports list:
+-------------
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__EXEHDR__ (exehdr.o):
+    [linker generated]        ./cfg/sim6502.cfg(2)
+__MAIN_SIZE__ ([linker generated]):
+    crt0.o                    src/crt0.s(13)
+    [linker generated]        ./cfg/sim6502.cfg(19)
+__MAIN_START__ ([linker generated]):
+    crt0.o                    src/crt0.s(13)
+    [linker generated]        ./cfg/sim6502.cfg(19)
+__MEM1_SIZE__ ([linker generated]):
+    [linker generated]        ./cfg/sim6502.cfg(18)
+__MEM1_START__ ([linker generated]):
+    [linker generated]        ./cfg/sim6502.cfg(18)
+__STACKSIZE__ ([linker generated]):
+    crt0.o                    src/crt0.s(14)
+    [linker generated]        ./cfg/sim6502.cfg(6)
+__STARTUP__ (crt0.o):
+    main.o                    src/main.s(13)
+_get_prdata (mmio.o):
+    routines.o                src/routines.s(19)
+_get_pready (mmio.o):
+    routines.o                src/routines.s(16)
+_io_read (routines.o):
+    main.o                    src/main.s(16)
+_io_write (routines.o):
+    main.o                    src/main.s(15)
+_main (main.o):
+    callmain.o                runtime/callmain.s(11)
+_mulIEEE754_verilog (routines.o):
+    main.o                    src/main.s(17)
+_mulIEEE754_vhdl (routines.o):
+    main.o                    src/main.s(18)
+_reset_flags (mmio.o):
+    routines.o                src/routines.s(20)
+_set_penable (mmio.o):
+    routines.o                src/routines.s(14)
+_set_psel (mmio.o):
+    routines.o                src/routines.s(13)
+_set_pwdata (mmio.o):
+    routines.o                src/routines.s(18)
+_set_pwdata_16 (mmio.o):
+    routines.o                src/routines.s(17)
+_set_pwrite (mmio.o):
+    routines.o                src/routines.s(15)
+addysp (addysp.o):
+    incsp8.o                  runtime/incsp8.s(8)
+    incsp4.o                  runtime/incsp4.s(8)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+addysp1 (addysp.o):
+    lmul.o                    runtime/lmul.s(9)
+    land.o                    runtime/land.s(9)
+    ladd.o                    runtime/ladd.s(8)
+axlong (axlong.o):
+    custom_stdlib.o           src/custom_stdlib.s(78)
+booleq (makebool.o):
+    leq.o                     runtime/leq.s(8)
+callmain (callmain.o):
+    crt0.o                    src/crt0.s(10)
+decsp4 (decsp4.o):
+    lpush.o                   runtime/lpush.s(12)
+    routines.o                src/routines.s(234)
+decsp8 (decsp8.o):
+    main.o                    src/main.s(145)
+donelib (condes.o):
+    crt0.o                    src/crt0.s(11)
+exit (paravirt.o):
+    crt0.o                    src/crt0.s(12)
+incsp1 (incsp1.o):
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+incsp2 (incsp2.o):
+    popptr1.o                 runtime/popptr1.s(8)
+    custom_stdlib.o           src/custom_stdlib.s(78)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+incsp4 (incsp4.o):
+    lcmp.o                    runtime/lcmp.s(9)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+incsp8 (incsp8.o):
+    mmio.o                    src/mmio.s(837)
+    routines.o                src/routines.s(234)
+initlib (condes.o):
+    crt0.o                    src/crt0.s(11)
+ldeax0sp (ldeaxysp.o):
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+ldeaxysp (ldeaxysp.o):
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+popptr1 (popptr1.o):
+    steaxspi.o                runtime/steaxspi.s(9)
+ptr1 (zeropage.o):
+    popptr1.o                 runtime/popptr1.s(9)
+    lcmp.o                    runtime/lcmp.s(10)
+    zerobss.o                 common/zerobss.s(9)
+    steaxspi.o                runtime/steaxspi.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    mmio.o                    src/mmio.s(11)
+ptr3 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+ptr4 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+pusha (pusha.o):
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+pushax (pushax.o):
+    callmain.o                runtime/callmain.s(11)
+    custom_stdlib.o           src/custom_stdlib.s(78)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    routines.o                src/routines.s(234)
+pusheax (lpush.o):
+    custom_stdlib.o           src/custom_stdlib.s(78)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+pushl0 (lpush.o):
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+pushw0sp (pushwsp.o):
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+pushwysp (pushwsp.o):
+    routines.o                src/routines.s(234)
+sp (zeropage.o):
+    popptr1.o                 runtime/popptr1.s(9)
+    lcmp.o                    runtime/lcmp.s(10)
+    subysp.o                  runtime/subysp.s(9)
+    steaxsp.o                 runtime/steaxsp.s(8)
+    pushwsp.o                 runtime/pushwsp.s(8)
+    pushax.o                  runtime/pushax.s(8)
+    pusha.o                   runtime/pusha.s(8)
+    lpush.o                   runtime/lpush.s(13)
+    lmul.o                    runtime/lmul.s(10)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    land.o                    runtime/land.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    incsp2.o                  runtime/incsp2.s(8)
+    incsp1.o                  runtime/incsp1.s(8)
+    decsp8.o                  runtime/decsp8.s(8)
+    decsp4.o                  runtime/decsp4.s(8)
+    addysp.o                  runtime/addysp.s(8)
+    add.o                     runtime/add.s(12)
+    crt0.o                    /home/parallels/Desktop/2elab/splatters/cc65//asminc/zeropage.inc(11)
+    custom_stdlib.o           src/custom_stdlib.s(10)
+    main.o                    src/main.s(10)
+    mmio.o                    src/mmio.s(10)
+    routines.o                src/routines.s(10)
+sreg (zeropage.o):
+    lcmp.o                    runtime/lcmp.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    steaxsp.o                 runtime/steaxsp.s(8)
+    lpush.o                   runtime/lpush.s(13)
+    lmul.o                    runtime/lmul.s(10)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    land.o                    runtime/land.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    axlong.o                  runtime/axlong.s(9)
+    custom_stdlib.o           src/custom_stdlib.s(10)
+    main.o                    src/main.s(10)
+    mmio.o                    src/mmio.s(10)
+    routines.o                src/routines.s(10)
+steax0sp (steaxsp.o):
+    main.o                    src/main.s(145)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+    routines.o                src/routines.s(234)
+steaxspidx (steaxspi.o):
+    main.o                    src/main.s(145)
+    main.o                    src/main.s(145)
+steaxysp (steaxsp.o):
+    main.o                    src/main.s(145)
+subysp (subysp.o):
+    main.o                    src/main.s(145)
+tmp1 (zeropage.o):
+    steaxspi.o                runtime/steaxspi.s(10)
+    land.o                    runtime/land.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    add.o                     runtime/add.s(12)
+tmp2 (zeropage.o):
+    steaxspi.o                runtime/steaxspi.s(10)
+    lmul.o                    runtime/lmul.s(10)
+tmp3 (zeropage.o):
+    steaxspi.o                runtime/steaxspi.s(10)
+    lmul.o                    runtime/lmul.s(10)
+tmp4 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+tosadd0ax (ladd.o):
+    custom_stdlib.o           src/custom_stdlib.s(78)
+    mmio.o                    src/mmio.s(837)
+tosaddax (add.o):
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+tosaddeax (ladd.o):
+    mmio.o                    src/mmio.s(837)
+tosand0ax (land.o):
+    custom_stdlib.o           src/custom_stdlib.s(78)
+tosandeax (land.o):
+    mmio.o                    src/mmio.s(837)
+    mmio.o                    src/mmio.s(837)
+toseqeax (leq.o):
+    main.o                    src/main.s(145)
+toslcmp (lcmp.o):
+    leq.o                     runtime/leq.s(8)
+tosmuleax (lmul.o):
+    custom_stdlib.o           src/custom_stdlib.s(78)
+zerobss (zerobss.o):
+    crt0.o                    src/crt0.s(10)
+

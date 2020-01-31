@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/parallels/Desktop/elaborato_754/mutilplexer_ieee754/mutilplexer_ieee754.srcs/sources_1/new/tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/parallels/Desktop/elaborato_754/mutilplexer_ieee754/mutilplexer_ieee754.sim/sim_1/impl/func/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/parallels/Desktop/elaborato_754/mutilplexer_ieee754/mutilplexer_ieee754.sim/sim_1/impl/func/xsim/tb_func_impl.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mul_ieee754_verilog'
+INFO: [VRFC 10-3107] analyzing entity 'mul_ieee754_vhdl'
+INFO: [VRFC 10-3107] analyzing entity 'tl'

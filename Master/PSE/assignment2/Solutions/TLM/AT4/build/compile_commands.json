@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/build",
+  "command": "/usr/bin/clang++   -I/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/include -I/Users/mircodemarchi/pse_libraries/systemc/include   -g3 -ggdb -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/SecondAssignment_TLM_AT4.x.dir/src/main_multiplier_AT4.cpp.o -c /Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/main_multiplier_AT4.cpp",
+  "file": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/main_multiplier_AT4.cpp"
+},
+{
+  "directory": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/build",
+  "command": "/usr/bin/clang++   -I/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/include -I/Users/mircodemarchi/pse_libraries/systemc/include   -g3 -ggdb -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/SecondAssignment_TLM_AT4.x.dir/src/multiplier_AT4_testbench.cpp.o -c /Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/multiplier_AT4_testbench.cpp",
+  "file": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/multiplier_AT4_testbench.cpp"
+},
+{
+  "directory": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/build",
+  "command": "/usr/bin/clang++   -I/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/include -I/Users/mircodemarchi/pse_libraries/systemc/include   -g3 -ggdb -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/SecondAssignment_TLM_AT4.x.dir/src/multiplier_AT4.cpp.o -c /Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/multiplier_AT4.cpp",
+  "file": "/Users/mircodemarchi/Desktop/assignment2/TLM/AT4/src/multiplier_AT4.cpp"
+}
+]

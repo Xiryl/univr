@@ -1,0 +1,38 @@
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+data 01000000000000000000000000000000
+expected 40800000
+vhdl multiplier result: 40800000
+verilog multiplier result: 40800000
+data 01000000010000000000000000000000
+expected 41100000
+vhdl multiplier result: 41100000
+verilog multiplier result: 41100000
+data 01000000001000000000000000000000
+expected 40c80000
+vhdl multiplier result: 40c80000
+verilog multiplier result: 40c80000
+data 01111111100000000000000000000000
+expected 7f800000
+vhdl multiplier result: 7f800000
+verilog multiplier result: 7f800000
+data 01111111111111111111111111111111
+expected 7fc00000
+vhdl multiplier result: 7fc00000
+verilog multiplier result: 7fc00000
+data 01000001010110000000000000000000
+expected 43364000
+vhdl multiplier result: 43364000
+verilog multiplier result: 43364000
+data 01000011001111100100000000000000
+expected 470d6310
+vhdl multiplier result: 470d6310
+verilog multiplier result: 470d6310
+data 01000001100110000000000000000000
+expected 43b48000
+vhdl multiplier result: 43b48000
+verilog multiplier result: 43b48000
+data 01001011101101011000000000000000
+expected 5800ae40
+vhdl multiplier result: 5800ae40
+verilog multiplier result: 5800ae40

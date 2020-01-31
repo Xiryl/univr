@@ -1,0 +1,64 @@
+ca65 V2.17 - Git 582aa41
+Main file   : src/crt0.s
+Current file: src/crt0.s
+
+000000r 1               ;
+000000r 1               ; Oliver Schmidt, 2013-05-16
+000000r 1               ;
+000000r 1               ; Startup code for cc65 (sim6502 version)
+000000r 1               ;
+000000r 1               
+000000r 1               .export         _exit
+000000r 1               .export         __STARTUP__ : absolute = 1      ; Mark as startup
+000000r 1               
+000000r 1               .import         zerobss, callmain
+000000r 1               .import         initlib, donelib
+000000r 1               .import         exit
+000000r 1               .import         __MAIN_START__, __MAIN_SIZE__   ; Linker generated
+000000r 1               .import         __STACKSIZE__                   ; Linker generated
+000000r 1               .include        "zeropage.inc"
+000000r 2               ;
+000000r 2               ; zeropage.inc
+000000r 2               ;
+000000r 2               ; (C) Copyright 2002-2012, Ullrich von Bassewitz (uz@cc65.org)
+000000r 2               ;
+000000r 2               
+000000r 2               ; Assembler include file that imports the runtime zero page locations used
+000000r 2               ; by the compiler, ready for usage in asm code.
+000000r 2               
+000000r 2               
+000000r 2                       .globalzp       sp, sreg, regsave
+000000r 2                       .globalzp       ptr1, ptr2, ptr3, ptr4
+000000r 2                       .globalzp       tmp1, tmp2, tmp3, tmp4
+000000r 2                       .globalzp       regbank
+000000r 2               
+000000r 2               ; The size of the register bank
+000000r 2               regbanksize     = 6
+000000r 2               
+000000r 2               ; The total amount of zero page space used
+000000r 2               zpspace         = 26
+000000r 2               
+000000r 2               ; The amount of space that needs to be saved by an interrupt handler that
+000000r 2               ; calls C code (does not include the register bank, which is saved by the
+000000r 2               ; generated C code if required).
+000000r 2               zpsavespace     = zpspace - regbanksize
+000000r 2               
+000000r 2               
+000000r 1               
+000000r 1               .segment "STARTUP"
+000000r 1  D8                   cld
+000001r 1  A2 FF                ldx     #$FF
+000003r 1  9A                   txs
+000004r 1  A9 rr                lda     #<(__MAIN_START__ + __MAIN_SIZE__ + __STACKSIZE__)
+000006r 1  A2 rr                ldx     #>(__MAIN_START__ + __MAIN_SIZE__ + __STACKSIZE__)
+000008r 1  85 rr                sta     sp
+00000Ar 1  86 rr                stx     sp+1
+00000Cr 1  20 rr rr             jsr     zerobss
+00000Fr 1  20 rr rr             jsr     initlib
+000012r 1  20 rr rr             jsr     callmain
+000015r 1               
+000015r 1  48           _exit:  pha
+000016r 1  20 rr rr             jsr     donelib
+000019r 1  68                   pla
+00001Ar 1  4C rr rr             jmp     exit
+00001Ar 1               

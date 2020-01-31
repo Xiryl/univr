@@ -1,0 +1,9 @@
+0.6
+2019.1
+Sep  4 2019
+09:47:21
+/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/mul_ieee754_verilog.v,1578416194,verilog,,/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/tl.v,,mul_ieee754_verilog,,,,,,,,
+/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/mul_ieee754_vhdl.vhdl,1578416176,vhdl,,,,mul_ieee754_vhdl;pkg_states,,,,,,,,
+/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/tb.v,1578403234,verilog,,,,tb,,,,,,,,
+/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/tl.v,1578403243,verilog,,/home/parallels/Desktop/elab01/rtl_mul_754/rtl_mul_754.srcs/sources_1/new/tb.v,,tl,,,,,,,,

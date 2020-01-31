@@ -1,0 +1,36 @@
+
+\tikzset{
+	->, % makes the edges directed
+	>=stealth, % makes the arrow heads bold
+	node distance=5cm, % specifies the minimum distance between two nodes. Change if n every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ n initial text=$ $, % sets the text that appears on the start arrow
+}
+
+		\begin{tikzpicture}
+		
+		%s0
+		\node[state, initial] (s0) {$s_0$};		
+		%s1										
+		\node[state, right of=s0] (s1) {$s_1$};	
+		%s2									
+		\node[state, right of=s1] (s2) {$s_2$};		
+		%s3								
+		\node[state, below of=s2] (s3) {$s_3$};
+		%s4			
+		\node[state, below of=s1] (s4) {$s_4$};			
+		%s5							
+		\node[state, below of=s0, accepting] (s5) {$s_5$};
+		
+		
+		\draw (s0) edge[loop above] node{reset} (s0);
+		\draw (s0) edge[above] node{} (s1);
+		\draw (s1) edge[above, sloped] node{res\_vhdl\_rdy = 1} (s2);
+		\draw (s1) edge[loop above, sloped] node{others} (s1);
+		\draw (s1) edge[above, sloped] node{res\_verulog\_rdy = 1} (s3);
+		\draw (s1) edge[below, sloped] node[text width=4cm,align=center]  {res\_verulog\_rdy = 1 and res\_vhdl\_rdy = 1} (s4);
+		\draw (s2) edge[above, bend right] node{} (s1);
+		\draw (s3) edge[above, bend right] node{} (s1);
+		\draw (s4) edge[above] (s5);
+		\draw[dotted] (s5) edge[above] (s0);
+		
+		
+		\end{tikzpicture}

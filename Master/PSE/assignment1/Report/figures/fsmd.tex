@@ -1,0 +1,148 @@
+
+		%s0
+		\node[state, initial] (s0) {$s_0$};		
+		%s1										
+		\node[state, right of=s0] (s1) {$s_1$};	
+		%s2									
+		\node[state, right of=s1] (s2) {$s_2$};		
+		%nan								
+		\node[state, below of=s0, xshift=-3cm] (NaN) {$NaN$};
+		%zero			
+		\node[state, right of=NaN] (zero) {$Zero$};			
+		%inf							
+		\node[state, right of=zero] (inf) {$Inf$};
+		%s6
+		\node[state, right of=inf] (s6) {$s_6$};
+		%s7
+		\node[state, right of=s6] (s7) {$s_7$};
+		%s8
+		\node[state, below of=s7] (s8) {$s_8$};
+		%s9
+		\node[state, below of=s6] (s9) {$s_9$};
+		%s10
+		\node[state, left of=s9] (s10) {$s_{10}$};
+		%s12
+		\node[state, left of=s10] (s12) {$s_{12}$};
+		%s11
+		\node[state, left of=s12] (s11) {$s_{11}$};
+		%s13
+		\node[state, below of=s10] (s13) {$s_{13}$};
+		%s14
+		\node[state, below of=s8] (s14) {$s_{14}$};
+		%norm
+		\node[state, below of=s11] (norm) {$norm$};
+		%denorm
+		\node[state, below of=s14] (denorm) {$denorm$};
+		%15
+		\node[state, below of=norm] (s15) {$s15$};
+		%16
+		\node[state, below of=s15] (s16) {$s16$};
+		%17
+		\node[state, right of=s16, xshift=+3cm] (s17) {$s17$};
+		%18
+		\node[state, right of=s17, xshift=+3cm] (s18) {$s18$};
+		%19
+		\node[state, below of=s18] (s19) {$s19$};
+		%out
+		\node[state, accepting, below of=s17] (out) {$out$};
+		
+		
+		% S0
+		\draw (s0) edge[loop above] node{reset} (s0);
+		\draw (s0) edge[bend left, above] node{} (s1);
+		
+		% S1
+		\draw (s1) edge[loop above]  node{inrdy = 0} (s1);
+		\draw (s1) edge[bend left, above] node{inrdy = 1} (s2);
+		
+		% S2
+		% cond1: op1(30 DOWNTO 23) = 255 AND m1 /= 0) OR (op2(30 DOWNTO 23) = 255 AND m2 /= 0
+		% cond2: (op1(30 DOWNTO 23) = 255 AND m1 = 0 AND op2(30 DOWNTO 23) = 0 AND m2 = 0) OR (op2(30 DOWNTO 23) = 255 AND m2 = 0 AND op1(30 DOWNTO 23) = 0 AND m1 = 0)
+		% cond3: op1(30 DOWNTO 23) = 0 AND m1 = 0) OR (op2(30 DOWNTO 23) = 0 AND m2 = 0
+		% cond4: op1(30 DOWNTO 23) = 255 AND m1 = 0) OR (op2(30 DOWNTO 23) = 255 AND m2 = 0
+		\draw (s2) edge[sloped, above] node{cond.1 or cond.2} (NaN);
+		\draw (s2) edge[sloped, above] node{cond.3} (zero);
+		\draw (s2) edge[sloped, above, bend left] node{cond.4} (inf);
+		\draw (s2) edge[sloped, above, bend left] node{others} (s6);
+		
+		% S6
+		% cond5: (op1(30 DOWNTO 23) = 0 AND op2(30 DOWNTO 23) = 0)
+		% cond6: (op1(30 DOWNTO 23) = 0)
+		%cond7:  (op2(30 DOWNTO 23) = 0)
+		\draw (s6) edge[above] node{cond.5} (s7);
+		\draw (s6) edge[sloped, above] node{cond.6} (s8);
+		\draw (s6) edge[sloped, above] node{cond.7} (s9);
+		\draw (s6) edge[sloped, above] node{others} (s10);
+		
+		%s7
+		\draw (s7) edge[bend left, above] node{} (s10);
+		
+		%s8
+		\draw (s8) edge[bend left, above] node{} (s10);
+		
+		%s9
+		\draw (s9) edge[bend left, above] node{} (s10);
+	
+		%s10
+		%cond8: (tmpm(47 DOWNTO 46) = "10") OR (tmpm(47 DOWNTO 46) = "11")
+		%cond9: (tmpm(47 DOWNTO 46) = "00")
+		\draw (s10) edge[above, bend right, near end, sloped]	 node{cond.8} (s11);
+		\draw (s10) edge[bend left, below, near start] node{cond.9} (s12);
+		\draw (s10) edge[near end,bend left, below, sloped] node{others} (norm);
+		
+		%s11
+		\draw (s11) edge[bend right, below] node{} (norm);
+		
+		%12
+		% cond10: tmpexp(8) = 1
+		\draw (s12) edge[near end, sloped, bend right, above] node{cond.10} (s13);
+		\draw (s12) edge[near end, sloped, bend right, above, looseness=0.4] node{others} (s14);
+		
+		%13
+		%cond11:(tmpm(47 DOWNTO 46) = "00")
+		\draw (s13) edge[loop right, right] node{cond.11} (s13);
+		\draw (s13) edge[bend left, below] node{others} (norm);
+		
+		%14
+		%cond12:(tmpm(47 DOWNTO 46) = "00")
+		% cond13:(tmpexp(8 DOWNTO 0) = 0)
+		\draw (s14) edge[loop right, right] node{cond.12} (s14);
+		\draw (s14) edge[bend left, below, near end, sloped] node{cond.13} (denorm);
+		\draw (s14) edge[bend left, below, sloped, looseness=1.4] node{others} (norm);
+			
+		%norm
+		%cond14:(tmpexp(8) = '1') 
+		\draw (norm) edge[above, bend left, near end, sloped] node{cond.14} (inf);
+		\draw (norm) edge[below, bend right, near end, sloped] node{others} (s15);
+		
+		%denorm
+		\draw (denorm) edge[above] node{} (s16);
+		
+		%15
+		\draw (s15) edge[bend right] node{} (s16);
+		
+		%16
+		%cond15:(tmpm(23) = '0')
+		\draw (s16) edge[ above] node{cond.15} (s17);
+		\draw (s16) edge[bend left, above, near start, sloped] node{others} (s18);
+		
+		%17
+		\draw (s17) edge[] node{} (out);
+		
+		%18
+		%cond16:(tmpm(47 DOWNTO 46) = "01")
+		\draw (s18) edge[right] node{cond.16} (s19);
+		\draw (s18) edge[above] node{others} (s17);
+		
+		%19
+		\draw (s19) edge[above] node{} (out);
+		
+		% nan
+		\draw[dotted] (NaN) edge[] node{} (out);
+		
+		%zero
+		\draw[dotted] (zero) edge[] node{} (out);
+		
+		%inf
+		\draw[dotted] (inf) edge[bend left] node{} (out);
+		

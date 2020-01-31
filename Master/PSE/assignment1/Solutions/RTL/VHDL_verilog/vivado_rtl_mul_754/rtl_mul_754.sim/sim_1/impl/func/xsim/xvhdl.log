@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/parallels/Desktop/elaborato_754/mutilplexer_ieee754/mutilplexer_ieee754.sim/sim_1/impl/func/xsim/tb_func_impl.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mul_ieee754_verilog'
+INFO: [VRFC 10-3107] analyzing entity 'mul_ieee754_vhdl'
+INFO: [VRFC 10-3107] analyzing entity 'tl'
