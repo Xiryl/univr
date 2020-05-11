@@ -1,0 +1,3 @@
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/Factorial/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/Factorial/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/Factorial/build/CMakeFiles/factorial.dir

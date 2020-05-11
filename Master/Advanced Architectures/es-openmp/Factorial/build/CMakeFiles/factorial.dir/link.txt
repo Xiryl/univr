@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++14 -fopenmp   CMakeFiles/factorial.dir/Factorial.cpp.o  -o factorial -rdynamic 

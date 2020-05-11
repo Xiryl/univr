@@ -1,0 +1,4 @@
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/MatrixMul/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/MatrixMul/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/MatrixMul/build/CMakeFiles/matrix_mul_O0.dir
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/MatrixMul/build/CMakeFiles/matrix_mul_O3.dir

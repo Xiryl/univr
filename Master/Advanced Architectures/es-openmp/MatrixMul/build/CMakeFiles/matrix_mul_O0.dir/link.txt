@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++14 -fopenmp   CMakeFiles/matrix_mul_O0.dir/main.cpp.o CMakeFiles/matrix_mul_O0.dir/src/MatrixMultiplication.cpp.o  -o matrix_mul_O0 

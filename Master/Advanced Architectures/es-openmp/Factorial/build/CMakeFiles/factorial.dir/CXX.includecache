@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Timer.hpp
+chrono
+-
+string
+-
+sys/times.h
+-
+Host/PrintExt.hpp
+../include/Host/PrintExt.hpp
+Timer.i.hpp
+../include/Timer.i.hpp
+
+../include/Timer.i.hpp
+cassert
+-
+cmath
+-
+ctime
+-
+iomanip
+-
+ratio
+-
+sys/times.h
+-
+unistd.h
+-
+
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/Factorial/Factorial.cpp
+iostream
+-
+omp.h
+-
+Timer.hpp
+/mnt/c/Users/Federico/Dropbox/CorsoAA/OpenMP/SoluzioniOMP1/Factorial/Timer.hpp
+
